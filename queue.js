@@ -1,5 +1,10 @@
 // Manual implemettaion of Queue Data Structure
 
+// QUEUE Characteristics
+// 1. FIFO (First In First Out) structure
+// 2. Elements are added to the back and removed from the front
+// 3. Common operations: enqueue (add), dequeue (remove), front (peek), isEmpty (check if empty)
+
 // declared a Queue Function Constructor.
 function Queue() {
   collection = []; // Initialize the collection array
