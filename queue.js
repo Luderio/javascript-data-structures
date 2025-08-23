@@ -54,16 +54,16 @@ if (typeof module !== "undefined") {
 }
 
 if (typeof module !== "undefined" && require.main === module) {
-const queue = new Queue();
+  const queue = new Queue();
 
-queue.enqueue("Luderio");
-queue.enqueue("Sanchez");
-queue.enqueue("New Item");
-queue.print();
-queue.dequeue();
-queue.front();
-queue.print();
-queue.isEmpty();
+  queue.enqueue("Luderio");
+  queue.enqueue("Sanchez");
+  queue.enqueue("New Item");
+  queue.print();
+  queue.dequeue();
+  queue.front();
+  queue.print();
+  queue.isEmpty();
 }
 
 /**  OUTPUT:

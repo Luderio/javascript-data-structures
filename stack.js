@@ -46,13 +46,20 @@ function Stack() {
   };
 }
 
-let stack = new Stack();
+// imports the Stack to be used for testing.
+if (typeof module !== "undefined") {
+  module.exports = Stack;
+}
 
-stack.push("Luderio");
-stack.push("Chezzy");
-stack.push("New Item");
-console.log(stack.size());
-console.log(stack.peek());
-console.log(stack.pop());
-console.log(stack.peek());
-console.log(stack.size());
+if (typeof module !== "undefined" && require.main === module) {
+  const stack = new Stack();
+
+  stack.push("Luderio");
+  stack.push("Chezzy");
+  stack.push("New Item");
+  console.log(stack.size());
+  console.log(stack.peek());
+  console.log(stack.pop());
+  console.log(stack.peek());
+  console.log(stack.size());
+}
