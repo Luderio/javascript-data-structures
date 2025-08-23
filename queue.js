@@ -7,7 +7,7 @@
 
 // declared a Queue Function Constructor.
 function Queue() {
-  collection = []; // Initialize the collection array
+  let collection = []; // Initialize the collection array
 
   // you can remove the console.log() on each method. I only added it to log the result on the terminal.
 
@@ -49,7 +49,12 @@ function Queue() {
   };
 }
 
-var queue = new Queue();
+if (typeof module !== "undefined") {
+  module.exports = Queue;
+}
+
+if (typeof module !== "undefined" && require.main === module) {
+const queue = new Queue();
 
 queue.enqueue("Luderio");
 queue.enqueue("Sanchez");
@@ -59,6 +64,7 @@ queue.dequeue();
 queue.front();
 queue.print();
 queue.isEmpty();
+}
 
 /**  OUTPUT:
 Enqueued: Luderio

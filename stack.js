@@ -1,3 +1,11 @@
+// Manual Stack Data Structure Implementation in JavaScript
+
+// Stack Characteristics
+// 1. LIFO (Last In First Out) structure
+// 2. Elements are added to the top and removed from the top
+// 3. Common operations: push (add), pop (remove), peek (view top), isEmpty (check if empty)
+
+// created a function constructor named Stack
 function Stack() {
   this.count = 0;
   this.storage = {};
@@ -25,6 +33,16 @@ function Stack() {
 
   this.peek = function () {
     return `Top element: ${this.storage[this.count - 1]}`;
+  };
+
+  this.isEmpty = function () {
+    return this.count === 0;
+  };
+
+  this.clear = function () {
+    this.count = 0;
+    this.storage = {};
+    console.log("Stack cleared");
   };
 }
 
