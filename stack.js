@@ -1,5 +1,7 @@
 // Manual Stack Data Structure Implementation in JavaScript
 
+const { log } = require("console");
+
 // Stack Characteristics
 // 1. LIFO (Last In First Out) structure
 // 2. Elements are added to the top and removed from the top
@@ -26,21 +28,24 @@ function Stack() {
     this.count--;
     let result = this.storage[this.count];
     delete this.storage[this.count];
-    return `Popped: ${result}`;
+    console.log(`Popped: ${result}`);
   };
 
   // checks the size/length of the stack.
   this.size = function () {
-    return `Current size: ${this.count}`;
+    console.log(`Current size: ${this.count}`);
+    return this.count;
   };
 
   // views the top element of the stack without removing it.
   this.peek = function () {
-    return `Top element: ${this.storage[this.count - 1]}`;
+    console.log(`Top element: ${this.storage[this.count - 1]}`);
+    return this.storage[this.count - 1];
   };
 
   // checks if the stack is empty.
   this.isEmpty = function () {
+    console.log(this.count === 0);
     return this.count === 0;
   };
 
