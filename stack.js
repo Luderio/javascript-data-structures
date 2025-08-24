@@ -3,7 +3,9 @@
 // Stack Characteristics
 // 1. LIFO (Last In First Out) structure
 // 2. Elements are added to the top and removed from the top
-// 3. Common operations: push (add), pop (remove), peek (view top), isEmpty (check if empty)
+// 3. Items can be of any type (primitive or reference)
+// 4. No specific size limit (dynamic sizing)
+// 5. Common operations: push (add), pop (remove), peek (view top), isEmpty (check if empty)
 
 // created a function constructor named Stack
 function Stack() {
