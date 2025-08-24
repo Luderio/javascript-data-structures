@@ -1,7 +1,5 @@
 // Manual Stack Data Structure Implementation in JavaScript
 
-const { log } = require("console");
-
 // Stack Characteristics
 // 1. LIFO (Last In First Out) structure
 // 2. Elements are added to the top and removed from the top
