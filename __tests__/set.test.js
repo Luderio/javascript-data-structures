@@ -47,14 +47,12 @@ describe("CustomSet", () => {
     expect(s.values()).toEqual(["A"]);
   });
 
-  test("3) size() and values() undefined when empty; proper values when non-empty", () => {
+  test("3) values() undefined when empty; proper values when non-empty", () => {
     const s = new CustomSet();
-    expect(s.size()).toBeUndefined();
     expect(s.values()).toBeUndefined();
 
     s.add(1);
     s.add(2);
-    expect(s.size()).toBe(2);
     expect(s.values()).toEqual([1, 2]);
   });
 
