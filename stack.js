@@ -59,34 +59,3 @@ function Stack() {
 if (typeof module !== "undefined") {
   module.exports = Stack;
 }
-
-if (typeof module !== "undefined" && require.main === module) {
-  const stack = new Stack();
-
-  stack.push("Luderio");
-  stack.push("Chezzy");
-  stack.push("New Item");
-  console.log(stack.size());
-  console.log(stack.peek());
-  console.log(stack.pop());
-  console.log(stack.peek());
-  console.log(stack.size());
-  console.log(stack.isEmpty());
-  stack.clear();
-  console.log(stack.size());
-
-  /**
-   * OUTPUT:
-   * Pushed: Luderio
-   * Pushed: Chezzy
-   * Pushed: New Item
-   * Current size: 3
-   * Top element: New Item
-   * Popped: New Item
-   * Top element: Chezzy
-   * Current size: 2
-   * false
-   * Stack cleared
-   * Current size: 0
-   */
-}
