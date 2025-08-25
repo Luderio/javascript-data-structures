@@ -140,12 +140,12 @@ class BinarySearchTree {
           return null;
         }
 
-        // if the selected node has no left children, replace the selected node with the right node.
+        // if the selected node has no left children
         if (node.left === null) {
           return node.right;
         }
 
-        // if the selected node has no right children, replace the selected node with the left node.
+        // if the selected node has no right children
         if (node.right === null) {
           return node.left;
         }
