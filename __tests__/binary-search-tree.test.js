@@ -25,6 +25,11 @@ beforeEach(() => {
  * 8. delete() removes a node with two children by replacing with inorder successor
  * 9. delete() updates the root when the root is removed
  * 10. delete() of non-existent value logs a warning and returns null
+ * 11. traversal methods produce correct sequences (inOrder, preOrder, postOrder, levelOrder)
+ * 12. traversal methods return null on empty tree
+ * 13. minHeight and maxHeight on empty and single-node trees
+ * 14. isBalanced returns true for a reasonably balanced tree
+ * 15. isBalanced returns false when height difference exceeds 1 with both children present at root
  */
 
 describe("BinarySearchTree", () => {
@@ -160,4 +165,52 @@ describe("BinarySearchTree", () => {
       "The node that you're trying to delete (Node: 42) does not exists in this tree."
     );
   });
+
+  test("11) traversal methods produce correct sequences", () => {
+    const bst = new BinarySearchTree();
+    [9, 4, 17, 3, 6, 22, 5, 7, 20].forEach((n) => bst.insert(n));
+
+    expect(bst.inOrder()).toEqual([3, 4, 5, 6, 7, 9, 17, 20, 22]);
+    expect(bst.preOrder()).toEqual([9, 4, 3, 6, 5, 7, 17, 22, 20]);
+    expect(bst.postOrder()).toEqual([3, 5, 7, 6, 4, 20, 22, 17, 9]);
+    expect(bst.levelOrder()).toEqual([9, 4, 17, 3, 6, 22, 5, 7, 20]);
+  });
+
+  test("12) traversal methods return null on empty tree", () => {
+    const bst = new BinarySearchTree();
+    expect(bst.inOrder()).toBeNull();
+    expect(bst.preOrder()).toBeNull();
+    expect(bst.postOrder()).toBeNull();
+    expect(bst.levelOrder()).toBeNull();
+  });
+
+  test("13) minHeight and maxHeight on empty and single-node trees", () => {
+    const empty = new BinarySearchTree();
+    expect(empty.minHeight()).toBe(-1);
+    expect(empty.maxHeight()).toBe(-1);
+
+    const single = new BinarySearchTree();
+    single.insert(42);
+    expect(single.minHeight()).toBe(0);
+    expect(single.maxHeight()).toBe(0);
+  });
+
+  test("14) isBalanced returns true for a reasonably balanced tree", () => {
+    const bst = new BinarySearchTree();
+    [9, 4, 17, 3, 6, 22, 5, 7, 20].forEach((n) => bst.insert(n));
+    expect(bst.minHeight()).toBe(2);
+    expect(bst.maxHeight()).toBe(3);
+    expect(bst.isBalanced()).toBe(true);
+  });
+
+  test(
+    "15) isBalanced returns false when height difference exceeds 1 with both children present at root",
+    () => {
+      const bst = new BinarySearchTree();
+      [10, 5, 15, 2, 1].forEach((n) => bst.insert(n));
+      expect(bst.minHeight()).toBe(1);
+      expect(bst.maxHeight()).toBe(3);
+      expect(bst.isBalanced()).toBe(false);
+    }
+  );
 });

@@ -20,6 +20,7 @@ class Node {
 class BinarySearchTree {
   constructor() {
     this.root = null;
+    this.previousNode = [];
   }
 
   // Insert a new value into the BST
@@ -52,10 +53,9 @@ class BinarySearchTree {
   }
 
   min() {
-    if (this.root === null) {
-      return null;
-    }
+    if (this.root === null) return null;
 
+    // will travel to the left most part of the tree.
     function findMinimum(node) {
       if (node.left !== null) {
         return findMinimum(node.left);
@@ -72,6 +72,7 @@ class BinarySearchTree {
       return null;
     }
 
+    // will travel to the rightmost part of the tree.
     function findMaximum(node) {
       if (node.right !== null) {
         return findMaximum(node.right);
@@ -82,6 +83,36 @@ class BinarySearchTree {
     return findMaximum(this.root);
   }
 
+  isBalanced() {
+    return this.minHeight() >= this.maxHeight() - 1;
+  }
+
+  minHeight(node = this.root) {
+    if (node === null) return -1;
+
+    let left = this.minHeight(node.left);
+    let right = this.minHeight(node.right);
+
+    // If one child is missing, use the height of the existing child
+    if (left === -1) return right + 1;
+    if (right === -1) return left + 1;
+
+    // // If one child is missing, use the height of the existing child. This code is good but it affects the isBalanced Method.
+    // if (left === -1) return right + 1;
+    // if (right === -1) return left + 1;
+
+    return Math.min(left, right) + 1;
+  }
+
+  maxHeight(node = this.root) {
+    if (node === null) return -1;
+
+    let left = this.maxHeight(node.left);
+    let right = this.maxHeight(node.right);
+
+    return Math.max(left, right) + 1;
+  }
+
   // Searches for the node in the tree that is equivalent to the value.
   search(value) {
     if (this.root === null) {
@@ -90,21 +121,10 @@ class BinarySearchTree {
     }
 
     function searchNode(node, value) {
-      if (node === null) {
-        return null;
-      }
-
-      if (value === node.value) {
-        return node;
-      }
-
-      if (value < node.value) {
-        return searchNode(node.left, value);
-      }
-
-      if (value > node.value) {
-        return searchNode(node.right, value);
-      }
+      if (node === null) return null;
+      if (value === node.value) return node;
+      if (value < node.value) return searchNode(node.left, value);
+      if (value > node.value) return searchNode(node.right, value);
     }
 
     return searchNode(this.root, value);
@@ -168,6 +188,81 @@ class BinarySearchTree {
     }
 
     return deleteNode(this.root, value);
+  }
+
+  // begins the exploration of the tree values from the leftmost node and end on the rightmost node.
+  inOrder() {
+    if (this.root === null) {
+      return null;
+    }
+
+    let result = [];
+    function traverse(node) {
+      node.left && traverse(node.left);
+      result.push(node.value);
+      node.right && traverse(node.right);
+    }
+
+    traverse(this.root);
+    return result;
+  }
+
+  // begins the exploration of the tree from the root node to the leaf nodes (nodes without children)
+  preOrder() {
+    if (this.root === null) {
+      return null;
+    }
+
+    let result = [];
+    function traverse(node) {
+      result.push(node.value);
+      node.left && traverse(node.left);
+      node.right && traverse(node.right);
+    }
+
+    traverse(this.root);
+    return result;
+  }
+
+  // begins the exploration of the tree from the leaf node (nodes without children) to the root node.
+  postOrder() {
+    if (this.root === null) {
+      return null;
+    }
+
+    let result = [];
+    function traverse(node) {
+      node.left && traverse(node.left);
+      node.right && traverse(node.right);
+      result.push(node.value);
+    }
+
+    traverse(this.root);
+    return result;
+  }
+
+  // explores all the nodes in a given level within a tree before continuing on to the next level.
+  levelOrder() {
+    let result = [];
+    let Q = [];
+
+    if (this.root === null) return null;
+
+    Q.push(this.root);
+    while (Q.length > 0) {
+      let node = Q.shift();
+      result.push(node.value);
+
+      if (node.left !== null) {
+        Q.push(node.left);
+      }
+
+      if (node.right !== null) {
+        Q.push(node.right);
+      }
+    }
+
+    return result;
   }
 }
 
