@@ -68,16 +68,63 @@ function HashTable() {
       }
     }
   };
+
+  this.keys = function () {
+    let keys = [];
+    this.table.forEach((item) => {
+      if (item.length !== undefined) {
+        if (item.length === 1) {
+          keys.push(item[0][0]);
+        } else {
+          item.forEach((item) => {
+            keys.push(item[0]);
+          });
+        }
+      }
+    });
+
+    return keys;
+  };
+
+  this.values = function () {
+    let values = [];
+    this.table.forEach((item) => {
+      if (item.length !== undefined) {
+        if (item.length === 1) {
+          values.push(item[0][1]);
+        } else {
+          item.forEach((item) => {
+            values.push(item[1]);
+          });
+        }
+      }
+    });
+
+    return values;
+  };
+
+  this.entries = function () {
+    let entries = [];
+    this.table.forEach((item) => {
+      if (item.length !== undefined) {
+        if (item.length === 1) {
+          entries.push([item[0][0], item[0][1]]);
+        } else {
+          item.forEach((item) => {
+            entries.push([item[0], item[1]]);
+          });
+        }
+      }
+    });
+
+    return entries;
+  };
+
+  this.clear = function () {
+    this.table = new Array(this.size);
+  };
 }
 
-let table = new HashTable();
-table.set("firstname", "Luderio");
-table.set("lastname", "Sanchez");
-table.set("firstname", "Chezzy");
-console.log(table.has("last_name"));
-console.log(table.get("firstname"));
-console.log(table.size);
-
-console.log(table.table);
-
-table.delete("lastname");
+if (typeof module !== "undefined") {
+  module.exports = HashTable;
+}
