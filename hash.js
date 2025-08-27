@@ -23,6 +23,8 @@ function HashTable() {
       this.table[index].forEach((item) => {
         if (item[0] === key) {
           item[1] = value;
+        } else {
+          this.table[index].push([key, value]);
         }
       });
     }
@@ -35,9 +37,9 @@ function HashTable() {
 
     if (this.table[index].length > 1) {
       let result = this.table[index].filter((item) => {
-        return (item[0] = key);
+        return item[0] === key;
       });
-      return result;
+      return result[0][1];
     }
 
     if (this.table[index].length === 1) {
