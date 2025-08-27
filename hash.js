@@ -1,6 +1,7 @@
 function HashTable() {
-  this.size = 100;
-  this.table = new Array(this.size);
+  this.size = 0;
+  this.storage_size = 100;
+  let table = new Array(this.size);
 
   this._hash = function (key) {
     let hash = 0;
@@ -9,22 +10,26 @@ function HashTable() {
     });
 
     // console.log(hash % this.size);
-    return hash % this.size;
+    return hash % this.storage_size;
   };
 
   this.set = function (key, value) {
     let index = this._hash(key);
 
-    if (this.table[index] === undefined) this.table[index] = [[key, value]];
+    if (table[index] === undefined) {
+      table[index] = [[key, value]];
+      this.size++;
+    }
 
     // checks if the index, has more than one [key, value] pairs
-    if (this.table[index].length >= 1) {
+    if (table[index].length >= 1) {
       // if length > 1, loop through the items.
-      this.table[index].forEach((item) => {
+      table[index].forEach((item) => {
         if (item[0] === key) {
           item[1] = value;
         } else {
-          this.table[index].push([key, value]);
+          table[index].push([key, value]);
+          this.size++;
         }
       });
     }
@@ -33,23 +38,23 @@ function HashTable() {
   this.get = function (key) {
     let index = this._hash(key);
 
-    if (this.table[index] === undefined) return undefined;
+    if (table[index] === undefined) return undefined;
 
-    if (this.table[index].length > 1) {
-      let result = this.table[index].filter((item) => {
+    if (table[index].length > 1) {
+      let result = table[index].filter((item) => {
         return item[0] === key;
       });
       return result[0][1];
     }
 
-    if (this.table[index].length === 1) {
-      return this.table[index][0][1];
+    if (table[index].length === 1) {
+      return table[index][0][1];
     }
   };
 
   this.has = function (key) {
     let item = this.get(key);
-    return item ? true : false;
+    return item === undefined ? false : true;
   };
 
   this.delete = function (key) {
@@ -57,24 +62,30 @@ function HashTable() {
 
     if (item) {
       let index = this._hash(key);
-      if (this.table[index].length > 1) {
-        this.table[index].forEach((item, index) => {
+      if (table[index].length > 1) {
+        table[index].forEach((item, index) => {
           if (item[0] === key) {
-            this.table[index].splice(index, 1);
+            table[index].splice(index, 1);
+            this.size--;
           }
         });
       }
 
-      if (this.table[index][0][0] === key) {
-        this.table[index].splice(0, 1);
+      if (table[index][0][0] === key) {
+        table[index].splice(0, 1);
+        this.size--;
       }
     }
   };
 
   this.keys = function () {
     let keys = [];
-    this.table.forEach((item) => {
-      if (item.length !== undefined) {
+
+    if (table.length === undefined) return undefined;
+    if (table.length === 0) return [];
+
+    table.forEach((item) => {
+      if (item.length !== undefined || item.length !== 0) {
         if (item.length === 1) {
           keys.push(item[0][0]);
         } else {
@@ -90,8 +101,12 @@ function HashTable() {
 
   this.values = function () {
     let values = [];
-    this.table.forEach((item) => {
-      if (item.length !== undefined) {
+
+    if (table.length === undefined) return undefined;
+    if (table.length === 0) return [];
+
+    table.forEach((item) => {
+      if (item.length !== undefined || item.length !== 0) {
         if (item.length === 1) {
           values.push(item[0][1]);
         } else {
@@ -107,8 +122,12 @@ function HashTable() {
 
   this.entries = function () {
     let entries = [];
-    this.table.forEach((item) => {
-      if (item.length !== undefined) {
+
+    if (table.length === undefined) return undefined;
+    if (table.length === 0) return [];
+
+    table.forEach((item) => {
+      if (item.length !== undefined || item.length !== 0) {
         if (item.length === 1) {
           entries.push([item[0][0], item[0][1]]);
         } else {
@@ -123,7 +142,8 @@ function HashTable() {
   };
 
   this.clear = function () {
-    this.table = new Array(this.size);
+    table = new Array(this.size);
+    this.size = 0;
   };
 }
 
