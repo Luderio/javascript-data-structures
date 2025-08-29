@@ -34,15 +34,18 @@ function Trie() {
   this.search = function (input) {
     let node = this.root;
 
-    while (input.length > 1) {
+    function searchWord(input, node) {
+      if (input.length === 1 && node.keys.has(input)) {
+        return node.keys.get(input).isEnd() ? true : false;
+      }
+
       if (node.keys.has(input[0]) === false) {
         return false;
       } else {
-        node = node.keys.get(input[0]);
-        input = input.substring(1);
+        return searchWord(input.substring(1), node.keys.get(input[0]));
       }
     }
-    return node.keys.has(input) && node.keys.get(input).isEnd() ? true : false;
+    return searchWord(input, this.root);
   };
 
   this.print = function () {
@@ -61,7 +64,7 @@ function Trie() {
       }
     };
     search(this.root, new String());
-    return words.length > 0 ? words : mo;
+    return words.length > 0 ? words : undefined;
   };
 }
 
