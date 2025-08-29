@@ -29,41 +29,15 @@ function Trie() {
       }
     }
     createNodes(input, this.root);
-
-    //   let index = 0;
-
-    //   if (input.length === 0) {
-    //     node.setEnd();
-    //     return;
-    //   }
-
-    //   if (node.keys.has(input[0]) === false) {
-    //     node.keys.set(input[0], new Node());
-    //     index++;
-    //     return createNodes(
-    //       input.substring(index, index + 1),
-    //       node.keys.get(input[0])
-    //     );
-    //   } else {
-    //     index++;
-    //     return createNodes(
-    //       input.substring(index, index + 1),
-    //       node.keys.get(input[0])
-    //     );
-    //   }
-    // }
-    // createNodes(input, this.root);
   };
 
   this.search = function (input) {
     let node = this.root;
-    let index = 0;
 
     while (input.length > 1) {
-      if (!node.keys.has(input[0])) {
+      if (node.keys.has(input[0]) === false) {
         return false;
       } else {
-        index++;
         node = node.keys.get(input[0]);
         input = input.substring(1);
       }
