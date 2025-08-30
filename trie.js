@@ -48,6 +48,27 @@ function Trie() {
     return searchWord(input, this.root);
   };
 
+  this.startsWith = function (prefix) {
+    let node = this.root;
+
+    while (prefix.length > 1) {
+      let letter = prefix[0];
+      if (node.keys.get(letter) === undefined) {
+        return false;
+      } else {
+        node = node.keys.get(letter);
+        prefix = prefix.substring(1);
+      }
+    }
+
+    // return node.keys.get(prefix) ? true : false;
+    if (node.keys.get(prefix)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   this.print = function () {
     let words = new Array();
     let search = function (node, string) {
