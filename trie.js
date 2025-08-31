@@ -104,7 +104,9 @@ function Trie() {
           }
 
           console.log("Word Ends with intersection:", intersection);
-          return root_node.keys.delete(intersection[2]);
+          intersection.forEach((item) => {
+            root_node.keys.get()
+          });
         }
 
         if (node.keys.size > 1) {
