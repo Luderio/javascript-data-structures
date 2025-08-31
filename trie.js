@@ -3,9 +3,9 @@
 function Trie() {
   function Node() {
     this.keys = new Map();
-    this.end - false;
-    this.setEnd = function () {
-      this.end = true;
+    this.end = false;
+    this.setEnd = function (status = true) {
+      this.end = status;
     };
     this.isEnd = function () {
       return this.end;
@@ -17,7 +17,7 @@ function Trie() {
   this.insert = function (input) {
     function createNodes(input, node = this.root) {
       if (input.length === 0) {
-        node.setEnd();
+        node.setEnd(true);
         return;
       }
       if (node.keys.has(input[0]) === false) {
@@ -32,8 +32,6 @@ function Trie() {
   };
 
   this.search = function (input) {
-    let node = this.root;
-
     function searchWord(input, node) {
       if (input.length === 1 && node.keys.has(input)) {
         return node.keys.get(input).isEnd() ? true : false;
@@ -71,10 +69,10 @@ function Trie() {
 
   this.print = function () {
     let words = new Array();
-    let search = function (node, string) {
+    let traverse = function (node, string) {
       if (node.keys.size != 0) {
         for (let letter of node.keys.keys()) {
-          search(node.keys.get(letter), string.concat(letter));
+          traverse(node.keys.get(letter), string.concat(letter));
         }
         if (node.isEnd()) {
           words.push(string);
@@ -84,8 +82,51 @@ function Trie() {
         return;
       }
     };
-    search(this.root, new String());
+    traverse(this.root, new String());
     return words.length > 0 ? words : undefined;
+  };
+
+  this.delete = function (word) {
+    let selected_word = this.search(word);
+    let intersection = [];
+    let root_node = this.root;
+    let word_copy = word;
+
+    if (selected_word === false || selected_word === undefined) return false;
+    if (word.length === 1) return false;
+
+    if (this.root.keys.has(word[0])) {
+      function traverse(word, node) {
+        if (word.length === 0) {
+          if (node.isEnd() && intersection.length < 2) {
+            console.log("Word Ends with no intersection:", intersection);
+            return; // return root_node.keys.delete(intersection[0]);
+          }
+
+          console.log("Word Ends with intersection:", intersection);
+          return root_node.keys.delete(intersection[2]);
+        }
+
+        if (node.keys.size > 1) {
+          if (node.isEnd() && node.keys.size > 1) {
+            node.setEnd(false);
+            return traverse(word.substring(1), node.keys.get(word[0]));
+          } else {
+            intersection.push(word[0]);
+            return traverse(word.substring(1), node.keys.get(word[0]));
+          }
+        }
+
+        if (node.keys.size === 1) {
+          if (node.isEnd()) {
+            console.log("Word Ends with no intersection word:", word[0]);
+          }
+          return traverse(word.substring(1), node.keys.get(word[0]));
+        }
+      }
+
+      return traverse(word, this.root);
+    }
   };
 }
 
