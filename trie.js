@@ -92,6 +92,7 @@ function Trie() {
     let previous_letter;
     let word_copy = word;
     let root_node = this.root;
+    let end_word = [];
 
     if (selected_word === false || selected_word === undefined) return false;
     if (word.length === 1) return false;
