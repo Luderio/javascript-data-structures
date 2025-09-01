@@ -4,6 +4,7 @@ function Trie() {
   function Node() {
     this.keys = new Map();
     this.end = false;
+    this.refCount = 0;
     this.setEnd = function (status = true) {
       this.end = status;
     };
@@ -16,6 +17,7 @@ function Trie() {
 
   this.insert = function (input) {
     function createNodes(input, node = this.root) {
+      node.refCount++;
       if (input.length === 0) {
         node.setEnd(true);
         return;
@@ -103,11 +105,20 @@ function Trie() {
           if (node.isEnd()) {
             if (node.keys.size > 0) {
               node.setEnd(false);
+              node.refCount--;
               return true;
             } else {
-              if (node.keys.size === 0 && intersection.length === 0) {
+              if (
+                node.keys.size === 0 &&
+                intersection.length === 0 &&
+                node.refCount === 1
+              ) {
+                console.log(node.refCount);
+
                 return root_node.keys.delete(word_copy[0]);
               } else {
+                console.log(node.refCount);
+
                 return intersection[intersection.length - 1].node.keys.delete(
                   intersection[intersection.length - 1].current_letter
                 );
@@ -118,6 +129,7 @@ function Trie() {
         }
 
         if (node.keys.size > 1) {
+          node.refCount--; // watch this code implementtaion
           intersection.push({
             previous_letter: previous_letter,
             current_letter: word[0],
@@ -130,6 +142,7 @@ function Trie() {
         }
 
         if (node.keys.size === 1) {
+          node.refCount--;
           previous_letter = word[0];
 
           return traverse(word.substring(1), node.keys.get(word[0]));
