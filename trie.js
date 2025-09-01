@@ -89,8 +89,9 @@ function Trie() {
   this.delete = function (word) {
     let selected_word = this.search(word);
     let intersection = [];
-    let root_node = this.root;
+    let previous_letter;
     let word_copy = word;
+    let root_node = this.root;
 
     if (selected_word === false || selected_word === undefined) return false;
     if (word.length === 1) return false;
@@ -98,31 +99,38 @@ function Trie() {
     if (this.root.keys.has(word[0])) {
       function traverse(word, node) {
         if (word.length === 0) {
-          if (node.isEnd() && intersection.length < 2) {
-            console.log("Word Ends with no intersection:", intersection);
-            return; // return root_node.keys.delete(intersection[0]);
+          if (node.isEnd()) {
+            if (node.keys.size > 0) {
+              node.setEnd(false);
+              return true;
+            } else {
+              if (node.keys.size === 0 && intersection.length === 0) {
+                return root_node.keys.delete(word_copy[0]);
+              } else {
+                return intersection[intersection.length - 1].node.keys.delete(
+                  intersection[intersection.length - 1].current_letter
+                );
+              }
+            }
           }
-
-          console.log("Word Ends with intersection:", intersection);
-          intersection.forEach((item) => {
-            root_node.keys.get()
-          });
+          return false;
         }
 
         if (node.keys.size > 1) {
-          if (node.isEnd() && node.keys.size > 1) {
-            node.setEnd(false);
-            return traverse(word.substring(1), node.keys.get(word[0]));
-          } else {
-            intersection.push(word[0]);
-            return traverse(word.substring(1), node.keys.get(word[0]));
-          }
+          intersection.push({
+            previous_letter: previous_letter,
+            current_letter: word[0],
+            node: node,
+          });
+
+          previous_letter = word[0];
+
+          return traverse(word.substring(1), node.keys.get(word[0]));
         }
 
         if (node.keys.size === 1) {
-          if (node.isEnd()) {
-            console.log("Word Ends with no intersection word:", word[0]);
-          }
+          previous_letter = word[0];
+
           return traverse(word.substring(1), node.keys.get(word[0]));
         }
       }
