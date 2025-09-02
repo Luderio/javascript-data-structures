@@ -132,7 +132,7 @@ describe("Trie", () => {
 
     expect(trie.delete("a")).toBe(true);
 
-    expect(trie.search("a")).toBe(true);
+    expect(trie.search("a")).toBe(false);
   });
 
   test("10. Consistency after multiple operations", () => {
