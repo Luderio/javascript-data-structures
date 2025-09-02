@@ -15,6 +15,7 @@ function Trie() {
   this.root = new Node();
 
   this.insert = function (input) {
+    input = input.toLowerCase();
     function createNodes(input, node = this.root) {
       if (input.length === 0) {
         node.setEnd(true);
@@ -32,6 +33,7 @@ function Trie() {
   };
 
   this.search = function (input) {
+    input = input.toLowerCase();
     function searchWord(input, node) {
       if (input.length === 1 && node.keys.has(input)) {
         return node.keys.get(input).isEnd() ? true : false;
@@ -47,6 +49,7 @@ function Trie() {
   };
 
   this.startsWith = function (prefix) {
+    prefix = prefix.toLowerCase();
     let node = this.root;
 
     while (prefix.length > 1) {
