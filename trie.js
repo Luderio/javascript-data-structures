@@ -99,7 +99,7 @@ function Trie() {
     let root_node = this.root;
 
     if (selected_word === false || selected_word === undefined) return false;
-    if (word.length <= 1) return false;
+    if (word.length <= 0) return false;
 
     if (this.root.keys.has(word[0])) {
       function traverse(word, node) {

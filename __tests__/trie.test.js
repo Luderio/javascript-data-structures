@@ -42,8 +42,7 @@ describe("Trie", () => {
 
     expect(trie.startsWith("car")).toBe(true);
     expect(trie.startsWith("ca")).toBe(true);
-    expect(trie.startsWith("carbon"))
-      .toBe(true);
+    expect(trie.startsWith("carbon")).toBe(true);
     expect(trie.startsWith("cars")).toBe(false);
     expect(trie.startsWith("cab")).toBe(false);
   });
@@ -127,20 +126,18 @@ describe("Trie", () => {
     expect(trie.search("gamut")).toBe(true);
   });
 
-  test("9. Deleting a single-character word returns false (current implementation)", () => {
+  test("9. Deleting a single-character word returns true", () => {
     const trie = new Trie();
     trie.insert("a");
 
-    // In current implementation, delete returns false for length <= 1
-    expect(trie.delete("a")).toBe(false);
+    expect(trie.delete("a")).toBe(true);
 
-    // Word should still be searchable
     expect(trie.search("a")).toBe(true);
   });
 
   test("10. Consistency after multiple operations", () => {
     const trie = new Trie();
-    const words = ["cat", "cater", "catering", "dog", "dove", "do"]; 
+    const words = ["cat", "cater", "catering", "dog", "dove", "do"];
     words.forEach((w) => trie.insert(w));
 
     // Delete a leaf and a non-leaf
@@ -159,7 +156,9 @@ describe("Trie", () => {
 
     // print should not include deleted words
     const printed = trie.print();
-    expect(printed).toEqual(expect.arrayContaining(["cat", "catering", "dog", "do"]));
+    expect(printed).toEqual(
+      expect.arrayContaining(["cat", "catering", "dog", "do"])
+    );
     expect(printed).not.toEqual(expect.arrayContaining(["dove", "cater"]));
   });
 });
