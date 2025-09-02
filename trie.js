@@ -4,7 +4,6 @@ function Trie() {
   function Node() {
     this.keys = new Map();
     this.end = false;
-    this.refCount = 0;
     this.setEnd = function (status = true) {
       this.end = status;
     };
@@ -17,7 +16,6 @@ function Trie() {
 
   this.insert = function (input) {
     function createNodes(input, node = this.root) {
-      node.refCount++;
       if (input.length === 0) {
         node.setEnd(true);
         return;
@@ -91,50 +89,57 @@ function Trie() {
   this.delete = function (word) {
     let selected_word = this.search(word);
     let intersection = [];
+    let tracker = [];
     let previous_letter;
     let word_copy = word;
     let root_node = this.root;
-    let end_word = [];
 
     if (selected_word === false || selected_word === undefined) return false;
-    if (word.length === 1) return false;
+    if (word.length <= 1) return false;
 
     if (this.root.keys.has(word[0])) {
       function traverse(word, node) {
         if (word.length === 0) {
           if (node.isEnd()) {
+            tracker.push({
+              previous_letter: previous_letter,
+              current_letter: word[0],
+              node: node,
+            });
             if (node.keys.size > 0) {
               node.setEnd(false);
-              node.refCount--;
               return true;
+            } else if (node.keys.size === 0 && intersection.length === 0) {
+              return root_node.keys.delete(word_copy[0]);
+            } else if (
+              tracker.length > 1 &&
+              tracker[0].node.keys.get(tracker[0].current_letter).keys.size ===
+                1
+            ) {
+              return tracker[0].node.keys.delete(tracker[0].current_letter);
             } else {
-              if (
-                node.keys.size === 0 &&
-                intersection.length === 0 &&
-                node.refCount === 1
-              ) {
-                console.log(node.refCount);
-
-                return root_node.keys.delete(word_copy[0]);
-              } else {
-                console.log(node.refCount);
-
-                return intersection[intersection.length - 1].node.keys.delete(
-                  intersection[intersection.length - 1].current_letter
-                );
-              }
+              return intersection[intersection.length - 1].node.keys.delete(
+                intersection[intersection.length - 1].current_letter
+              );
             }
           }
-          return false;
+          return true;
         }
 
         if (node.keys.size > 1) {
-          node.refCount--; // watch this code implementtaion
           intersection.push({
             previous_letter: previous_letter,
             current_letter: word[0],
             node: node,
           });
+
+          if (node.isEnd()) {
+            tracker.push({
+              previous_letter: previous_letter,
+              current_letter: word[0],
+              node: node,
+            });
+          }
 
           previous_letter = word[0];
 
@@ -142,7 +147,14 @@ function Trie() {
         }
 
         if (node.keys.size === 1) {
-          node.refCount--;
+          if (node.isEnd()) {
+            tracker.push({
+              previous_letter: previous_letter,
+              current_letter: word[0],
+              node: node,
+            });
+          }
+
           previous_letter = word[0];
 
           return traverse(word.substring(1), node.keys.get(word[0]));
