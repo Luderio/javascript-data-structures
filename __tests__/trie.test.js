@@ -10,7 +10,7 @@ const Trie = require("../trie");
  * 6. Deleting a leaf word removes it and does not affect unrelated words
  * 7. Deleting a word that is a prefix of other words unsets end-of-word but keeps children intact
  * 8. Deleting a non-existent word returns false and does not change existing words
- * 9. Deleting a single-character word returns false as per current implementation
+ * 9. Deleting a single-character word returns true
  * 10. After multiple operations (insert/delete), startsWith and search remain consistent for remaining words
  */
 
