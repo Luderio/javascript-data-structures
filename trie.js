@@ -90,6 +90,7 @@ function Trie() {
   };
 
   this.delete = function (word) {
+    word = word.toLowerCase();
     let selected_word = this.search(word);
     let intersection = [];
     let tracker = [];
