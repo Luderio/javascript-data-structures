@@ -58,20 +58,6 @@ function Heap() {
         return heap;
       } else if (type === "max" || type === "maximum") {
         let heap = structuredClone(this.array);
-        if (heap.length > 2) {
-          let index = heap.length - 1;
-          let parent_index = Math.floor(index / 2);
-          while (index > 1 && heap[index] > heap[parent_index]) {
-            [
-              ([heap[parent_index], heap[index]] = [
-                heap[index],
-                heap[parent_index],
-              ]),
-            ];
-            index = parent_index;
-          }
-        }
-        return heap;
       } else {
         console.error("Type must be min/minimum or max/maximum");
         return;
