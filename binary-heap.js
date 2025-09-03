@@ -27,8 +27,9 @@ function Heap() {
     if (typeof type === "string") {
       if (type === "min" || type === "minimum") {
         let heap = structuredClone(this.array);
+        let parent_index = Math.floor((heap.length - 1) / 2);
 
-        for (let i = Math.floor((heap.length - 1) / 2); i >= 1; i--) {
+        for (let i = parent_index; i >= 1; i--) {
           siftDown(heap, i);
         }
 
@@ -58,6 +59,36 @@ function Heap() {
         return heap;
       } else if (type === "max" || type === "maximum") {
         let heap = structuredClone(this.array);
+        let parent_index = Math.floor((heap.length - 1) / 2);
+
+        for (let i = parent_index; i >= 1; i--) {
+          siftDown(heap, i);
+        }
+
+        function siftDown(heap, i) {
+          const length = heap.length;
+          while (i * 2 < length) {
+            let left = i * 2;
+            let right = i * 2 + 1;
+            let smallest = i;
+
+            if (left < length && heap[left] > heap[smallest]) {
+              smallest = left;
+            }
+            if (right < length && heap[right] > heap[smallest]) {
+              smallest = right;
+            }
+
+            if (smallest !== i) {
+              [heap[i], heap[smallest]] = [heap[smallest], heap[i]];
+              i = smallest;
+            } else {
+              break;
+            }
+          }
+        }
+
+        return heap;
       } else {
         console.error("Type must be min/minimum or max/maximum");
         return;
