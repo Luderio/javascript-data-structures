@@ -19,26 +19,28 @@
  */
 
 function Heap() {
-  this.array = [null];
+  let heap = [null];
+  this.output = [];
+  let selected_type = "min";
 
-  this.heapify = function (type) {
+  this.heapify = function (type = "min") {
     type = type.toLowerCase();
 
     if (typeof type === "string") {
       if (type === "min" || type === "minimum") {
-        let heap = structuredClone(this.array);
+        selected_type = type;
         let parent_index = Math.floor((heap.length - 1) / 2);
 
-        for (let i = parent_index; i >= 1; i--) {
-          siftDown(heap, i);
+        for (let index = parent_index; index >= 1; index--) {
+          siftDown(heap, index);
         }
 
-        function siftDown(heap, i) {
+        function siftDown(heap, index) {
           const length = heap.length;
-          while (i * 2 < length) {
-            let left = i * 2;
-            let right = i * 2 + 1;
-            let smallest = i;
+          while (index * 2 < length) {
+            let left = index * 2;
+            let right = index * 2 + 1;
+            let smallest = index;
 
             if (left < length && heap[left] < heap[smallest]) {
               smallest = left;
@@ -47,30 +49,31 @@ function Heap() {
               smallest = right;
             }
 
-            if (smallest !== i) {
-              [heap[i], heap[smallest]] = [heap[smallest], heap[i]];
-              i = smallest;
+            if (smallest !== index) {
+              [heap[index], heap[smallest]] = [heap[smallest], heap[index]];
+              index = smallest;
             } else {
               break;
             }
           }
         }
 
-        return heap;
+        this.output = heap;
+        return this.output;
       } else if (type === "max" || type === "maximum") {
-        let heap = structuredClone(this.array);
+        selected_type = type;
         let parent_index = Math.floor((heap.length - 1) / 2);
 
-        for (let i = parent_index; i >= 1; i--) {
-          siftDown(heap, i);
+        for (let index = parent_index; index >= 1; index--) {
+          siftDown(heap, index);
         }
 
-        function siftDown(heap, i) {
+        function siftDown(heap, index) {
           const length = heap.length;
-          while (i * 2 < length) {
-            let left = i * 2;
-            let right = i * 2 + 1;
-            let smallest = i;
+          while (index * 2 < length) {
+            let left = index * 2;
+            let right = index * 2 + 1;
+            let smallest = index;
 
             if (left < length && heap[left] > heap[smallest]) {
               smallest = left;
@@ -79,16 +82,17 @@ function Heap() {
               smallest = right;
             }
 
-            if (smallest !== i) {
-              [heap[i], heap[smallest]] = [heap[smallest], heap[i]];
-              i = smallest;
+            if (smallest !== index) {
+              [heap[index], heap[smallest]] = [heap[smallest], heap[index]];
+              index = smallest;
             } else {
               break;
             }
           }
         }
 
-        return heap;
+        this.output = heap;
+        return this.output;
       } else {
         console.error("Type must be min/minimum or max/maximum");
         return;
@@ -100,7 +104,26 @@ function Heap() {
   };
 
   this.insert = function (element) {
-    this.array.push(element);
+    heap.push(element);
+  };
+
+  this.peek = function () {
+    return this.output[1];
+  };
+
+  this.extract = function () {
+    let [root] = this.output.splice(1, 1);
+    array = [...this.output];
+    this.heapify(selected_type);
+
+    return root;
+  };
+
+  this.replace = function (value) {
+    let [root] = this.output.splice(1, 1, value);
+    array = [...this.output];
+    this.heapify(selected_type);
+    return this.output;
   };
 }
 
