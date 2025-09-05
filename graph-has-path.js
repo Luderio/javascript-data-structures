@@ -1,9 +1,8 @@
 const traverse = (graph, source_node, destination_node) => {
-  let queue = [...source_node];
-
-  if (queue.length === 0 || queue === undefined) {
+  if (queue.length === 0 || source_node === undefined || source_node === null) {
     return false;
   }
+  let queue = [...source_node];
 
   const current = queue.shift();
 
@@ -27,4 +26,10 @@ const graph = {
   k: [],
 };
 
-console.log(traverse(graph, "f", "k"));
+if (typeof module !== "undefined" && require.main === module) {
+  console.log(traverse(graph, "f", "k"));
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { traverse, graph };
+}
