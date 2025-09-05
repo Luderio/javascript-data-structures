@@ -65,10 +65,22 @@ const graph = {
   f: [],
 };
 
-iterativeDFS(graph, "a");
-console.log("------------------------------");
-recursiveDFS(graph, "a");
-console.log("------------------------------");
-iterativeBFS(graph, "a");
-console.log("------------------------------");
-recursiveBFS(graph, "a");
+if (typeof module !== "undefined" && require.main === module) {
+  iterativeDFS(graph, "a");
+  console.log("------------------------------");
+  recursiveDFS(graph, "a");
+  console.log("------------------------------");
+  iterativeBFS(graph, "a");
+  console.log("------------------------------");
+  recursiveBFS(graph, "a");
+}
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    iterativeDFS,
+    recursiveDFS,
+    iterativeBFS,
+    recursiveBFS,
+    graph,
+  };
+}
