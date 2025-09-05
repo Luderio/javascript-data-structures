@@ -1,12 +1,10 @@
 const traverse = (graph, source_node, destination_node) => {
-  if (source_node === undefined || source_node === null) {
-    return false;
-  }
+  if (source_node === destination_node) return true;
+  if (source_node === undefined || source_node === null) return false;
+
   let queue = [...source_node];
 
-  if (queue.length === 0 || queue === undefined) {
-    return false;
-  }
+  if (queue.length === 0 || queue === undefined) return false;
 
   const current = queue.shift();
 
@@ -14,9 +12,7 @@ const traverse = (graph, source_node, destination_node) => {
     return traverse(graph, queue, destination_node);
   }
 
-  if (current === destination_node) {
-    return true;
-  }
+  if (current === destination_node) return true;
 
   return traverse(graph, [...queue, ...graph[current]], destination_node);
 };
