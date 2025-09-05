@@ -1,8 +1,12 @@
 const traverse = (graph, source_node, destination_node) => {
-  if (queue.length === 0 || source_node === undefined || source_node === null) {
+  if (source_node === undefined || source_node === null) {
     return false;
   }
   let queue = [...source_node];
+
+  if (queue.length === 0 || queue === undefined) {
+    return false;
+  }
 
   const current = queue.shift();
 
@@ -26,8 +30,10 @@ const graph = {
   k: [],
 };
 
+// const g = { ...graph, x: ["y"], y: [] };
+
 if (typeof module !== "undefined" && require.main === module) {
-  console.log(traverse(graph, "f", "k"));
+  console.log(traverse(graph, "", "k"));
 }
 
 if (typeof module !== "undefined") {
