@@ -68,7 +68,7 @@ if (typeof module !== "undefined" && require.main === module) {
     ["o", "n"],
   ];
 
-  console.log(undirected_graph(edges, "i", "l"));
+  console.log(undirected_graph(edges, "i", "m"));
 }
 
 if (typeof module !== "undefined") {
