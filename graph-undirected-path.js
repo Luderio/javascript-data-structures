@@ -59,12 +59,18 @@ const undirected_graph = (edges, node_a, node_b) => {
   return traverse(graph, node_a, node_b, new Set());
 };
 
-const edges = [
-  ["i", "j"],
-  ["k", "i"],
-  ["m", "k"],
-  ["k", "l"],
-  ["o", "n"],
-];
+if (typeof module !== "undefined" && require.main === module) {
+  const edges = [
+    ["i", "j"],
+    ["k", "i"],
+    ["m", "k"],
+    ["k", "l"],
+    ["o", "n"],
+  ];
 
-console.log(undirected_graph(edges, "p", "i"));
+  console.log(undirected_graph(edges, "i", "l"));
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { undirected_graph };
+}
