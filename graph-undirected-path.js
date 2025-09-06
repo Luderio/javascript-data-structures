@@ -34,8 +34,9 @@ const undirected_graph = (edges, node_a, node_b) => {
     set.add(source_node);
 
     for (let neighbor of graph[source_node]) {
-      if (traverse(graph, neighbor, destination_node, set) === true)
+      if (traverse(graph, neighbor, destination_node, set) === true) {
         return true;
+      }
     }
     return false;
   };
