@@ -32,7 +32,6 @@ const undirected_graph = (edges, node_a, node_b) => {
 
     let current = stack.pop();
 
-    // if (set.has(current)) return false;
     if (set.has(current)) {
       current = stack.pop();
       return traverse(graph, [current, ...stack], destination_node, set);
