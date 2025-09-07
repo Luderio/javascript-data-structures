@@ -1,43 +1,25 @@
-function graph_island_count(graph, nodes, islands, set) {
-  let node = nodes.shift();
+function graph_island_count(graph) {
+  let set = new Set();
+  let count = 0;
 
-  if (graph[node] === undefined || graph[node].length === 0) {
-    set.add(node);
-    islands.push([node, undefined]);
-    return graph_island_count(graph, nodes, islands, set);
-  }
-
-  for (let neighbor of graph[node]) {
-    if (set.has(neighbor)) {
-      islands.forEach((item, index) => {
-        if (item[0][1] === Number(node) || item[0][1] === neighbor) {
-          item.push([node, neighbor]);
-        }
-      });
-
-      break;
-    } else {
-      set.add(Number(node));
-      set.add(neighbor);
-
-      islands.push([[node, neighbor]]);
-      return graph_island_count(graph, nodes, islands, set);
+  function traverse(graph, node, set) {
+    if (set.has(String(node))) {
+      return false;
     }
+
+    set.add(String(node));
+    for (let neighbor of graph[node]) {
+      traverse(graph, neighbor, set);
+    }
+    return true;
   }
 
-  if (nodes.length === 0) {
-    let count = 0;
+  for (let node of Object.keys(graph)) {
+    console.log(set);
 
-    islands.forEach((item) => {
-      if (count < item.length) {
-        count = item.length;
-      }
-    });
-
-    return islands.length;
+    if (traverse(graph, node, set) === true) count++;
   }
-
-  return graph_island_count(graph, nodes, islands, set);
+  return count;
 }
 
 const graph = {
@@ -52,8 +34,7 @@ const graph = {
 };
 
 if (typeof module !== "undefined" && require.main === module) {
-  const nodes = Object.keys(graph);
-  const islands = graph_island_count(graph, nodes, new Array(), new Set());
+  const islands = graph_island_count(graph);
   console.log(islands);
 }
 

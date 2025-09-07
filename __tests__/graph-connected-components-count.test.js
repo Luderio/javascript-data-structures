@@ -24,8 +24,7 @@ describe("graph-connected-components-count connected_components_count()", () => 
       2: [1],
     };
 
-    const nodes = Object.keys(graph);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(3);
+    expect(graph_island_count(graph)).toBe(3);
   });
 
   test("2) isolated nodes are separate components", () => {
@@ -34,8 +33,7 @@ describe("graph-connected-components-count connected_components_count()", () => 
       b: [],
       c: [],
     };
-    const nodes = Object.keys(graph);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(3);
+    expect(graph_island_count(graph)).toBe(3);
   });
 
   test("3) neighbor-only nodes (not existing as keys) are included and counted correctly", () => {
@@ -45,8 +43,7 @@ describe("graph-connected-components-count connected_components_count()", () => 
     };
 
     // Components: {a,b}, {c} => 2
-    const nodes = Object.keys(graph);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(2);
+    expect(graph_island_count(graph)).toBe(2);
   });
 
   test("4) empty graph and invalid input return 0", () => {
@@ -62,7 +59,6 @@ describe("graph-connected-components-count connected_components_count()", () => 
       b: ["c"],
       c: ["a"], // cycle a-b-c-a
     };
-    const nodes = Object.keys(graph);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(1);
+    expect(graph_island_count(graph)).toBe(1);
   });
 });
