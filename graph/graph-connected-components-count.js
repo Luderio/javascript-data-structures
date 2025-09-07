@@ -34,8 +34,6 @@ function graph_island_count(graph, nodes, islands, set) {
       }
     });
 
-    console.log("number of Islands: ", islands.length);
-
     return islands.length;
   }
 
@@ -54,4 +52,5 @@ const graph = {
 };
 
 const nodes = Object.keys(graph);
-graph_island_count(graph, nodes, new Array(), new Set());
+const islands = graph_island_count(graph, nodes, new Array(), new Set());
+console.log(islands);
