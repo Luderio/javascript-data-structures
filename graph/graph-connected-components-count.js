@@ -51,6 +51,12 @@ const graph = {
   2: [1],
 };
 
-const nodes = Object.keys(graph);
-const islands = graph_island_count(graph, nodes, new Array(), new Set());
-console.log(islands);
+if (typeof module !== "undefined" && require.main === module) {
+  const nodes = Object.keys(graph);
+  const islands = graph_island_count(graph, nodes, new Array(), new Set());
+  console.log(islands);
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { graph_island_count };
+}
