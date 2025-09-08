@@ -8,26 +8,15 @@ function graph_island_count(graph) {
     if (typeof graph !== "object") return false;
     if (typeof set !== "object") return false;
 
-    const stack = [...node];
-
-    const current = stack.pop();
-
-    //to handle the isolated nodes without any connections (e.g.: node: [])
-    if (graph[current] === undefined || graph[current].length === 0) {
-      set.add(String(current));
-      return true;
-    }
-
     // if the node is visited already, return false, else add the node to the set.
-    if (set.has(String(current))) {
-      console.log(`returned false, node: ${current}`);
-
+    if (set.has(String(node))) {
       return false;
     }
-    set.add(String(current));
-    console.log([...set]);
+    set.add(String(node));
 
-    traverse(graph, [...stack, ...graph[current]], set);
+    for (let neighbor of graph[node]) {
+      traverse(graph, neighbor, set);
+    }
     return true;
   }
 
