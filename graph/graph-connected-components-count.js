@@ -3,34 +3,39 @@ function graph_island_count(graph) {
   let count = 0;
 
   function traverse(graph, node, set) {
+    // checks the input params if they are the right type. returns false if not.
     if (node.length === 0 && node === undefined) return false;
     if (typeof graph !== "object") return false;
     if (typeof set !== "object") return false;
 
     const stack = [...node];
 
-    if (stack.length === 0 || stack === undefined) return true;
-
     const current = stack.pop();
 
-    if (set.has(String(current))) {
-      return false;
-    }
-    set.add(String(current));
-
+    //to handle the isolated nodes without any connections (e.g.: node: [])
     if (graph[current] === undefined || graph[current].length === 0) {
+      set.add(String(current));
       return true;
     }
 
-    traverse(graph, [...stack, ...graph[current]], set);
+    // if the node is visited already, return false, else add the node to the set.
+    if (set.has(String(current))) {
+      console.log(`returned false, node: ${current}`);
 
-    // return true;
+      return false;
+    }
+    set.add(String(current));
+    console.log([...set]);
+
+    traverse(graph, [...stack, ...graph[current]], set);
+    return true;
   }
 
   for (let node of Object.keys(graph)) {
-    console.log(set);
-
-    if (traverse(graph, node, set) === true) count++;
+    if (traverse(graph, node, set) === true) {
+      console.log(`returned true, node: ${node}`);
+      count++;
+    }
   }
   return count;
 }
