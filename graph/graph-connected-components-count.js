@@ -3,15 +3,28 @@ function graph_island_count(graph) {
   let count = 0;
 
   function traverse(graph, node, set) {
-    if (set.has(String(node))) {
+    if (node.length === 0 && node === undefined) return false;
+    if (typeof graph !== "object") return false;
+    if (typeof set !== "object") return false;
+
+    const stack = [...node];
+
+    if (stack.length === 0 || stack === undefined) return true;
+
+    const current = stack.pop();
+
+    if (set.has(String(current))) {
       return false;
     }
+    set.add(String(current));
 
-    set.add(String(node));
-    for (let neighbor of graph[node]) {
-      traverse(graph, neighbor, set);
+    if (graph[current] === undefined || graph[current].length === 0) {
+      return true;
     }
-    return true;
+
+    traverse(graph, [...stack, ...graph[current]], set);
+
+    // return true;
   }
 
   for (let node of Object.keys(graph)) {
