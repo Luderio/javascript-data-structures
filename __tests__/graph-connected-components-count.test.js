@@ -47,10 +47,10 @@ describe("graph-connected-components-count connected_components_count()", () => 
   });
 
   test("4) empty graph and invalid input return 0", () => {
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(0);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(0);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(0);
-    expect(graph_island_count(graph, nodes, new Array(), new Set())).toBe(0);
+    expect(graph_island_count(graph)).toBe(0);
+    expect(graph_island_count(graph)).toBe(0);
+    expect(graph_island_count(graph)).toBe(0);
+    expect(graph_island_count(graph)).toBe(0);
   });
 
   test("5) cycles are handled without infinite loops (single component)", () => {
