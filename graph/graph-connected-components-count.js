@@ -3,8 +3,6 @@ function graph_island_count(graph) {
   let count = 0;
 
   if (typeof graph !== "object" || Object.keys(graph).length === 0) {
-    console.log(typeof graph);
-
     return 0;
   }
 
