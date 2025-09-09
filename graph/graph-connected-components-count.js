@@ -2,10 +2,19 @@ function graph_island_count(graph) {
   let set = new Set();
   let count = 0;
 
+  if (typeof graph !== "object" || Object.keys(graph).length === 0) {
+    console.log(typeof graph);
+
+    return 0;
+  }
+
   function traverse(graph, node, set) {
     // checks the input params if they are the right type. returns false if not.
     if (node.length === 0 && node === undefined) return false;
-    if (typeof graph !== "object") return false;
+    if (typeof graph !== "object" || Object.keys(graph).length === 0) {
+      return false;
+    }
+
     if (typeof set !== "object") return false;
 
     // if the node is visited already, return false, else add the node to the set.
