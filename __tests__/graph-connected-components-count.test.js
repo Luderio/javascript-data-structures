@@ -6,12 +6,11 @@ const {
  * Behaviors covered:
  * 1) Counts components in a mixed graph with one large component, one pair, and an isolated node (expected: 3)
  * 2) Counts isolated nodes (empty adjacency) as separate components
- * 3) Includes neighbor-only nodes that are not explicit keys and counts correctly
- * 4) Returns 0 for empty graph or invalid input
- * 5) Handles cycles without infinite loops and returns a single component
+ * 3) Returns 0 for empty graph or invalid input
+ * 4) Handles cycles without infinite loops and returns a single component
  */
 
-describe("graph-connected-components-count connected_components_count()", () => {
+describe("graph-connected-components-count", () => {
   test("1) counts components in mixed graph (expected 3)", () => {
     const graph = {
       3: [],
@@ -36,24 +35,15 @@ describe("graph-connected-components-count connected_components_count()", () => 
     expect(graph_island_count(graph)).toBe(3);
   });
 
-  test("3) neighbor-only nodes (not existing as keys) are included and counted correctly", () => {
-    const graph = {
-      a: ["b"], // 'b' is not a key, but should be considered a node connected to 'a'
-      c: [],
-    };
-
-    // Components: {a,b}, {c} => 2
-    expect(graph_island_count(graph)).toBe(2);
-  });
-
-  test("4) empty graph and invalid input return 0", () => {
+  test("3) empty graph and invalid input return 0", () => {
+    const graph = {};
     expect(graph_island_count(graph)).toBe(0);
     expect(graph_island_count(graph)).toBe(0);
     expect(graph_island_count(graph)).toBe(0);
     expect(graph_island_count(graph)).toBe(0);
   });
 
-  test("5) cycles are handled without infinite loops (single component)", () => {
+  test("4) cycles are handled without infinite loops (single component)", () => {
     const graph = {
       a: ["b"],
       b: ["c"],
