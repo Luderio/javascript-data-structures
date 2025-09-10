@@ -29,7 +29,6 @@ function graph_island_count(graph) {
 
   for (let node of Object.keys(graph)) {
     if (traverse(graph, node, set) === true) {
-      console.log(`returned true, node: ${node}`);
       count++;
     }
   }
