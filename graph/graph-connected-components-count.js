@@ -21,6 +21,7 @@ function graph_island_count(graph) {
     }
     set.add(String(node));
 
+    // loops through each neighbor of each node and recursively traverse the node.
     for (let neighbor of graph[node]) {
       traverse(graph, neighbor, set);
     }
