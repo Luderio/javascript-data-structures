@@ -9,11 +9,12 @@ function graph_island_count(graph) {
   function traverse(graph, node, set) {
     // checks the input params if they are the right type. returns false if not.
     if (node.length === 0 && node === undefined) return false;
+    if (typeof set !== "object") return false;
     if (typeof graph !== "object" || Object.keys(graph).length === 0) {
       return false;
     }
 
-    if (typeof set !== "object") return false;
+    const neighbors = graph[node];
 
     // if the node is visited already, return false, else add the node to the set.
     if (set.has(String(node))) {
@@ -21,11 +22,11 @@ function graph_island_count(graph) {
     }
     set.add(String(node));
 
-    // loops through each neighbor of each node and recursively traverse the node.
-    for (let neighbor of graph[node]) {
-      traverse(graph, neighbor, set);
-    }
-    return true;
+    // // loops through each neighbor of each node and recursively traverse the node.
+    // for (let neighbor of graph[node]) {
+    //   traverse(graph, neighbor, set);
+    // }
+    // return true;
   }
 
   // loop through each node in the graph invoking the traverse function.
