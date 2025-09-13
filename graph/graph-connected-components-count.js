@@ -26,14 +26,9 @@ function graph_island_count(graph) {
       set.add(String(node));
     }
 
-    // while (neighbors.length > 0) {
-    //   const neighbor = neighbors.shift();
-    //   traverse(graph, neighbor, set);
-    // }
-    if (neighbors.length > 0) {
-      const neighbor = neighbors.shift();
-      traverse(graph, neighbor, set);
-    }
+    neighbors.forEach((item) => {
+      traverse(graph, item, set);
+    });
     return true;
   }
 
