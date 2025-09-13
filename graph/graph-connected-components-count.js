@@ -26,6 +26,7 @@ function graph_island_count(graph) {
       set.add(String(node));
     }
 
+    // loops trhough each neighbor and travervse each node.
     while (neighbors.length > 0) {
       const neighbor = neighbors.shift();
       traverse(graph, neighbor, set);
