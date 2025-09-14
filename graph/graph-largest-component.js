@@ -14,11 +14,10 @@ function traverse(graph, node, set) {
     set.add(String(node));
   }
 
-  const neighbors = graph[node];
+  const neighbors = Array.isArray(graph[node]) ? [...graph[node]] : [];
   let size = 1;
 
-  while (neighbors.length > 0) {
-    const current = neighbors.pop();
+  for (const current of neighbors) {
     size += traverse(graph, current, set);
   }
 
@@ -26,7 +25,7 @@ function traverse(graph, node, set) {
 }
 
 function largest_component(graph) {
-  if (typeof graph !== "object" || Object.keys(graph).length === 0) {
+  if (!graph || typeof graph !== "object" || Object.keys(graph).length === 0) {
     return;
   }
   let set = new Set();
@@ -39,16 +38,22 @@ function largest_component(graph) {
   return largest;
 }
 
-const graph = {
-  3: [],
-  4: [6],
-  6: [4, 5, 7, 8],
-  8: [6],
-  7: [6],
-  5: [6],
-  1: [2],
-  2: [1],
-};
+if (typeof module !== "undefined" && require.main === module) {
+  const graph = {
+    3: [],
+    4: [6],
+    6: [4, 5, 7, 8],
+    8: [6],
+    7: [6],
+    5: [6],
+    1: [2],
+    2: [1],
+  };
 
-const largest_island = largest_component(graph);
-console.log(largest_island);
+  const largest_island = largest_component(graph);
+  console.log(largest_island);
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { largest_component, traverse };
+}
