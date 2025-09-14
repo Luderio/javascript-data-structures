@@ -9,7 +9,7 @@ function traverse(graph, node, set) {
   }
 
   if (set.has(String(node))) {
-    return false;
+    return 0;
   } else {
     set.add(String(node));
   }
