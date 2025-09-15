@@ -1,3 +1,12 @@
+/**
+ * GRAPH: Shortest Path
+ *
+ * Write a function: shortestPath, that takes in an array of edges for an undireced graph and two nodes (nodeA and nodeB).
+ * The function should return the length of the shortest path between nodeA and nodeB.
+ * Consider the length as the number of edges in the path, not the number of nodes.
+ * If there is no path between nodeA and nodeB, then return -1.
+ */
+
 function build_graph(edges) {
   const graph = {};
 
