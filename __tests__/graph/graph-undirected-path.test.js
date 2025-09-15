@@ -1,4 +1,4 @@
-const { undirected_graph } = require("../graph/graph-undirected-path");
+const { undirected_graph } = require("../../graph/graph-undirected-path");
 
 /**
  * Behaviors covered:

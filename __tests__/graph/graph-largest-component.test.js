@@ -1,4 +1,7 @@
-const { largest_component, traverse } = require("../graph/graph-largest-component");
+const {
+  largest_component,
+  traverse,
+} = require("../../graph/graph-largest-component");
 
 /**
  * Behaviors covered:
@@ -33,7 +36,7 @@ describe("graph-largest-component", () => {
 
   test("3) traversal does not revisit nodes already in the visited set (no double count)", () => {
     const graph = {
-      a: [b = "b", c = "c"],
+      a: [(b = "b"), (c = "c")],
       b: ["a"],
       c: ["a"],
     };
