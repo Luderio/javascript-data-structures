@@ -47,7 +47,7 @@ function traverse(graph, nodeA, nodeB, set, edge) {
   }
 
   if (current_node === nodeB) {
-    return edge - 1;
+    return edge - 1; // look into this code.
   }
 
   if (set.has(current_node)) {
