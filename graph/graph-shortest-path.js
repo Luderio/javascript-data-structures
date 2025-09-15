@@ -39,15 +39,9 @@ function traverse(graph, nodeA, nodeB, set, edge) {
   if (!isPlainObject(graph) || !isSet(set)) {
     return -1;
   }
-  console.log(edge);
 
   const neighbors = [...nodeA];
-  console.log(neighbors);
-
   const current_node = neighbors.shift();
-  console.log(current_node);
-  console.log(neighbors);
-
   if (set.size === Object.keys(graph).length) {
     return -1;
   }
@@ -61,7 +55,6 @@ function traverse(graph, nodeA, nodeB, set, edge) {
   } else {
     set.add(current_node);
     edge += 1;
-    console.log(set);
   }
 
   return traverse(
@@ -88,5 +81,5 @@ const edges = [
   ["w", "v"],
 ];
 
-const shortest_path = shortestPath(edges, "w", "a");
+const shortest_path = shortestPath(edges, "w", "x");
 console.log(shortest_path);
