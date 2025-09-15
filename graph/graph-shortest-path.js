@@ -21,6 +21,65 @@ function build_graph(edges) {
   return graph;
 }
 
+function isPlainObject(obj) {
+  return (
+    Object.prototype.toString.call(obj) === "[object Object]" &&
+    Object.getPrototypeOf(obj) === Object.prototype
+  );
+}
+
+function isSet(set) {
+  return (
+    Object.prototype.toString.call(set) === "[object Set]" &&
+    set.constructor === Set
+  );
+}
+
+function traverse(graph, nodeA, nodeB, set, edge) {
+  if (!isPlainObject(graph) || !isSet(set)) {
+    return -1;
+  }
+  console.log(edge);
+
+  const neighbors = [...nodeA];
+  console.log(neighbors);
+
+  const current_node = neighbors.shift();
+  console.log(current_node);
+  console.log(neighbors);
+
+  if (set.size === Object.keys(graph).length) {
+    return -1;
+  }
+
+  if (current_node === nodeB) {
+    return edge - 1;
+  }
+
+  if (set.has(current_node)) {
+    traverse(graph, neighbors, nodeB, set, edge);
+  } else {
+    set.add(current_node);
+    edge += 1;
+    console.log(set);
+  }
+
+  return traverse(
+    graph,
+    [...neighbors, ...graph[current_node]],
+    nodeB,
+    set,
+    edge
+  );
+}
+
+function shortestPath(edges, nodeA, nodeB) {
+  const graph = build_graph(edges);
+  let set = new Set();
+  let edge = 0;
+  return traverse(graph, nodeA, nodeB, set, edge);
+}
+
 const edges = [
   ["w", "x"],
   ["x", "y"],
@@ -29,5 +88,5 @@ const edges = [
   ["w", "v"],
 ];
 
-const graph = build_graph(edges);
-console.log(graph);
+const shortest_path = shortestPath(edges, "w", "a");
+console.log(shortest_path);
