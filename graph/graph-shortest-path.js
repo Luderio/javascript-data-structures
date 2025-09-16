@@ -59,7 +59,7 @@ function traverse(graph, nodeA, nodeB, set, edge) {
     edge += 1;
   }
 
-  const nextNeighbors = graph[current_node] || [];
+  const nextNeighbors = graph[current_node] || []; // handles case where current_node has no neighbors.
   return traverse(graph, [...neighbors, ...nextNeighbors], nodeB, set, edge);
 }
 
