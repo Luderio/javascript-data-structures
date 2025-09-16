@@ -36,53 +36,55 @@ function isSet(set) {
 }
 
 function traverse(graph, nodeA, nodeB, set, edge) {
-  if (
-    !isPlainObject(graph) ||
-    !isSet(set) ||
-    set.size === Object.keys(graph).length
-  ) {
+  if (!isPlainObject(graph) || !isSet(set)) {
     return -1;
   }
 
-  const neighbors = [...nodeA];
+  // When all nodes have been visited without finding nodeB
+  const neighbors = Array.isArray(nodeA) ? [...nodeA] : [nodeA];
   const current_node = neighbors.shift();
+
+  if (current_node === undefined) {
+    return -1;
+  }
 
   if (current_node === nodeB) {
     return Math.ceil(edge / 2); // formula on computing the edges not nodes.
   }
 
   if (set.has(current_node)) {
-    traverse(graph, neighbors, nodeB, set, edge);
+    return traverse(graph, neighbors, nodeB, set, edge);
   } else {
     set.add(current_node);
     edge += 1;
   }
 
-  return traverse(
-    graph,
-    [...neighbors, ...graph[current_node]],
-    nodeB,
-    set,
-    edge
-  );
+  const nextNeighbors = graph[current_node] || [];
+  return traverse(graph, [...neighbors, ...nextNeighbors], nodeB, set, edge);
 }
 
 function shortestPath(edges, nodeA, nodeB) {
+  if (!Array.isArray(edges)) return -1;
   const graph = build_graph(edges);
-  let set = new Set();
+  const set = new Set();
   let edge = 0;
-  console.log(graph);
-
   return traverse(graph, nodeA, nodeB, set, edge);
 }
 
-const edges = [
-  ["w", "x"],
-  ["x", "y"],
-  ["z", "y"],
-  ["z", "v"],
-  ["w", "v"],
-];
+// Example manual run when executing this file directly
+if (typeof module !== "undefined" && require.main === module) {
+  const edges = [
+    ["w", "x"],
+    ["x", "y"],
+    ["z", "y"],
+    ["z", "v"],
+    ["w", "v"],
+  ];
 
-const shortest_path = shortestPath(edges, "v", "y");
-console.log(shortest_path);
+  const shortest_path = shortestPath(edges, "v", "y");
+  console.log(shortest_path);
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { shortestPath, traverse };
+}
