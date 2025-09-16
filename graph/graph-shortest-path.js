@@ -40,10 +40,10 @@ function traverse(graph, nodeA, nodeB, set, distance) {
     return -1;
   }
 
-  // When all nodes have been visited without finding nodeB
   const neighbors = Array.isArray(nodeA) ? [...nodeA] : [nodeA];
   const current_node = neighbors.shift();
 
+  // When all nodes have been visited without finding nodeB
   if (current_node === undefined) {
     return -1;
   }
