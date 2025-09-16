@@ -48,7 +48,7 @@ function traverse(graph, nodeA, nodeB, set, edge) {
   const current_node = neighbors.shift();
 
   if (current_node === nodeB) {
-    return Math.ceil(edge / 2);
+    return Math.ceil(edge / 2); // formula on computing the edges not nodes.
   }
 
   if (set.has(current_node)) {
