@@ -35,7 +35,7 @@ function isSet(set) {
   );
 }
 
-function traverse(graph, nodeA, nodeB, set, edge) {
+function traverse(graph, nodeA, nodeB, set, distance) {
   if (!isPlainObject(graph) || !isSet(set)) {
     return -1;
   }
@@ -49,26 +49,32 @@ function traverse(graph, nodeA, nodeB, set, edge) {
   }
 
   if (current_node === nodeB) {
-    return Math.ceil(edge / 2); // formula on computing the edges not nodes.
+    return Math.ceil(distance / 2); // formula on computing the edges not nodes.
   }
 
   if (set.has(current_node)) {
-    return traverse(graph, neighbors, nodeB, set, edge);
+    return traverse(graph, neighbors, nodeB, set, distance);
   } else {
     set.add(current_node);
-    edge += 1;
+    distance += 1;
   }
 
   const nextNeighbors = graph[current_node] || []; // handles case where current_node has no neighbors.
-  return traverse(graph, [...neighbors, ...nextNeighbors], nodeB, set, edge);
+  return traverse(
+    graph,
+    [...neighbors, ...nextNeighbors],
+    nodeB,
+    set,
+    distance
+  );
 }
 
 function shortestPath(edges, nodeA, nodeB) {
   if (!Array.isArray(edges)) return -1;
   const graph = build_graph(edges);
   const set = new Set();
-  let edge = 0;
-  return traverse(graph, nodeA, nodeB, set, edge);
+  let distance = 0;
+  return traverse(graph, nodeA, nodeB, set, distance);
 }
 
 // Example manual run when executing this file directly
