@@ -40,8 +40,8 @@ function traverse(graph, nodeA, nodeB, set, distance) {
     return -1;
   }
 
-  const neighbors = Array.isArray(nodeA) ? [...nodeA] : [nodeA];
-  const current_node = neighbors.shift();
+  const queue = Array.isArray(nodeA) ? [...nodeA] : [nodeA];
+  const current_node = queue.shift();
 
   // When all nodes have been visited without finding nodeB
   if (current_node === undefined) {
@@ -53,20 +53,14 @@ function traverse(graph, nodeA, nodeB, set, distance) {
   }
 
   if (set.has(current_node)) {
-    return traverse(graph, neighbors, nodeB, set, distance);
-  } else {
-    set.add(current_node);
-    distance += 1;
+    return traverse(graph, queue, nodeB, set, distance);
   }
 
-  const nextNeighbors = graph[current_node] || []; // handles case where current_node has no neighbors.
-  return traverse(
-    graph,
-    [...neighbors, ...nextNeighbors],
-    nodeB,
-    set,
-    distance
-  );
+  set.add(current_node);
+  distance += 1;
+
+  const neighbors = graph[current_node] || []; // handles case where current_node has no neighbors.
+  return traverse(graph, [...queue, ...neighbors], nodeB, set, distance);
 }
 
 function shortestPath(edges, nodeA, nodeB) {
