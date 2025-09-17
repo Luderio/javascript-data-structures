@@ -25,6 +25,7 @@ const sail = (grid, row, column, visited) => {
   const validColumnCoordinate = 0 <= column && column < grid[0].length;
 
   if (!validRowCoordinate || !validColumnCoordinate) return false;
+  if (!Array.isArray(grid) || !visited.constructor === Set) return false;
   if (grid[row][column] === "W" || grid[row][column] === "w") return false;
 
   const coordinates = `${row},${column}`;
