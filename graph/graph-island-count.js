@@ -6,24 +6,38 @@
  * An island is a vertically or horizontally connected region of the land.
  */
 
-const build_graph = (grid) => {
-  const graph = {};
+const islandCount = (grid) => {
+  const visited = new Set();
+  let island = 0;
+  for (let row = 0; row < grid.length; row++) {
+    for (let column = 0; column < grid[0].length; column++) {
+      if (sail(grid, row, column, visited) === true) {
+        island++;
+      }
+    }
+  }
 
-  grid.forEach((edge) => {
-    const [node1, node2, node3, node4, node5] = edge;
-    if (!(node1 in graph)) graph[node1] = [];
-    if (!(node2 in graph)) graph[node2] = [];
-    if (!(node3 in graph)) graph[node3] = [];
-    if (!(node4 in graph)) graph[node4] = [];
-    if (!(node5 in graph)) graph[node5] = [];
-    graph[node1].push([node1, node2, node3, node4, node5]);
-    graph[node2].push([node1, node2, node3, node4, node5]);
-    graph[node3].push([node1, node2, node3, node4, node5]);
-    graph[node4].push([node1, node2, node3, node4, node5]);
-    graph[node5].push([node1, node2, node3, node4, node5]);
-  });
+  return island;
+};
 
-  return graph;
+const sail = (grid, row, column, visited) => {
+  const rowInbounds = 0 <= row && row < grid.length;
+  const columnInbounds = 0 <= column && column < grid[0].length;
+
+  if (!rowInbounds || !columnInbounds) return false;
+  if (grid[row][column] === "W") return false;
+
+  const coordinates = `${row},${column}`;
+
+  if (visited.has(coordinates)) return false;
+  visited.add(coordinates);
+
+  sail(grid, row - 1, column, visited);
+  sail(grid, row + 1, column, visited);
+  sail(grid, row, column - 1, visited);
+  sail(grid, row, column + 1, visited);
+
+  return true;
 };
 
 const grid = [
@@ -35,4 +49,4 @@ const grid = [
   ["L", "L", "W", "W", "W"],
 ];
 
-console.log(build_graph(grid));
+console.log(islandCount(grid));
