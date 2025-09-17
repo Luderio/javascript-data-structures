@@ -33,6 +33,7 @@ const sail = (grid, row, column, visited) => {
   if (visited.has(coordinates)) return false;
   visited.add(coordinates);
 
+  // this recursive calls will only be called on L nodes that is not yet added to the visited set.
   sail(grid, row - 1, column, visited);
   sail(grid, row + 1, column, visited);
   sail(grid, row, column - 1, visited);
