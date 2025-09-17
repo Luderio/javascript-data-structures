@@ -21,6 +21,7 @@ function build_graph(edges) {
   return graph;
 }
 
+// input type checking for graph and set input.
 function isPlainObject(obj) {
   return (
     Object.prototype.toString.call(obj) === "[object Object]" &&
@@ -49,13 +50,21 @@ function traverse(graph, nodeA, nodeB, set, distance) {
   }
 
   if (current_node === nodeB) {
-    return Math.ceil(distance / 2); // formula on computing the edges not nodes.
+    /**
+     * formula on computing the edges not nodes.
+     * since distance will be incremented at every node visited,
+     * distance value is divided by 2 to get the edge (connection between 2 nodes).
+     * using the Math.ciel() round of the dividend to the highiest value.
+     */
+    return Math.ceil(distance / 2);
   }
 
+  // traverse the next node if the current_node is already in the set and not increment the distance.
   if (set.has(current_node)) {
     return traverse(graph, queue, nodeB, set, distance);
   }
 
+  // if the current_node is not in set, add the current node in set, increment the distance and traverse the next node.
   set.add(current_node);
   distance += 1;
 
