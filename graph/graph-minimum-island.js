@@ -1,5 +1,5 @@
 /**
- * Graph: Minimum Island
+ * Graph: Minimum Island Version 1
  * Write a function minimumIsland(), that takes in a grid containing Ws and Ls.
  * W represents water and L represents land.
  * The function should return the size of the smallest island.
