@@ -1,6 +1,7 @@
 /**
  * Merge Sort
  *
+ * This is the implementation of the Merge Sort ALgorithm to sort an unordered list.
  */
 
 function merge(left, right) {
@@ -23,6 +24,10 @@ function merge(left, right) {
 function mergeSort(data) {
   if (data.length < 2) return data;
 
+  /**
+   * will recursively call itself dividing the list in half until only one element is left at the data parameter
+   * it will then call the merge() function to compare each element of merge them in sorted order.
+   */
   const mid_point = Math.round(data.length / 2);
   const left = mergeSort(data.slice(0, mid_point));
   const right = mergeSort(data.slice(mid_point));
