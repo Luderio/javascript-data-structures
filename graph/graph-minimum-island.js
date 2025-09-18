@@ -7,7 +7,7 @@
  * You may assume that grid contains at least one island.
  */
 
-const islandCount = (grid) => {
+const minimumIsland = (grid) => {
   const visited = new Set();
   let land = [];
   let size = [];
@@ -58,4 +58,4 @@ const grid = [
   ["L", "L", "W", "W", "W"],
 ];
 
-console.log(islandCount(grid));
+console.log(minimumIsland(grid));
