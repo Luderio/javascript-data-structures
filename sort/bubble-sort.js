@@ -1,10 +1,15 @@
+/**
+ * Bubble sort
+ *
+ * Implementation of Bubble SOrt Algorithm to sort an unsorted list.
+ */
 function bubbleSort(data) {
   let len = data.length;
 
   do {
     for (let i = 0; i < len - 1; i++) {
       if (data[i] > data[i + 1]) {
-        [([data[i], data[i + 1]] = [data[i + 1], data[i]])];
+        [([data[i], data[i + 1]] = [data[i + 1], data[i]])]; // swaps the value.
       }
     }
   } while (len--);
