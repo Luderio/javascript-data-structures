@@ -40,7 +40,6 @@ function Stack() {
 
   // checks if the stack is empty.
   this.isEmpty = function () {
-    console.log(this.count === 0);
     return this.count === 0;
   };
 
