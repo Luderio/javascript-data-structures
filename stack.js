@@ -47,7 +47,6 @@ function Stack() {
   this.clear = function () {
     this.count = 0;
     this.storage = {};
-    console.log("Stack cleared");
   };
 }
 
