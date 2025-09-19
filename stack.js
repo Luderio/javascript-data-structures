@@ -16,7 +16,6 @@ function Stack() {
   this.push = function (value) {
     this.storage[this.count] = value;
     this.count++;
-    console.log(`Pushed: ${value}`);
   };
 
   // removes item from top of the stack.
@@ -26,9 +25,7 @@ function Stack() {
     }
 
     this.count--;
-    let result = this.storage[this.count];
     delete this.storage[this.count];
-    console.log(`Popped: ${result}`);
   };
 
   // checks the size/length of the stack.
