@@ -203,14 +203,11 @@ describe("BinarySearchTree", () => {
     expect(bst.isBalanced()).toBe(true);
   });
 
-  test(
-    "15) isBalanced returns false when height difference exceeds 1 with both children present at root",
-    () => {
-      const bst = new BinarySearchTree();
-      [10, 5, 15, 2, 1].forEach((n) => bst.insert(n));
-      expect(bst.minHeight()).toBe(1);
-      expect(bst.maxHeight()).toBe(3);
-      expect(bst.isBalanced()).toBe(false);
-    }
-  );
+  test("15) isBalanced returns false when height difference exceeds 1 with both children present at root", () => {
+    const bst = new BinarySearchTree();
+    [10, 5, 15, 2, 1].forEach((n) => bst.insert(n));
+    expect(bst.minHeight()).toBe(1);
+    expect(bst.maxHeight()).toBe(3);
+    expect(bst.isBalanced()).toBe(false);
+  });
 });
