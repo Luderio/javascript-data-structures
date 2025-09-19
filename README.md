@@ -1,3 +1,19 @@
-# javascript-data-structures
+# :memo: javascript-data-structures
 
-This repository stores the code that I wrote while studying Data Structures in JavaScript.
+_This repository stores the code that I wrote while studying Data Structures in JavaScript. The data structures included in this repositories are the common data structures that is being used during technical interviews. I've written a manual implementation of each data structures to help be bettwe understand how each datat structures worked_
+
+## List of Contents
+
+- Graph Data Structure
+- Heap Data Structure
+- Linked List Data Structure
+- Map Data Structure
+- Queue Data Structure
+- Set Data Structure
+- Sorting Algorithms
+- Stack Data Structure
+- Tree Data Structure
+
+## Tests
+
+_Each folders has **tests** folders inside it which contains the test files for each data structures._
