@@ -30,13 +30,11 @@ function Stack() {
 
   // checks the size/length of the stack.
   this.size = function () {
-    console.log(`Current size: ${this.count}`);
     return this.count;
   };
 
   // views the top element of the stack without removing it.
   this.peek = function () {
-    console.log(`Top element: ${this.storage[this.count - 1]}`);
     return this.storage[this.count - 1];
   };
 
