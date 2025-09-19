@@ -1,4 +1,4 @@
-const { shortestPath } = require("../../graph/graph-shortest-path");
+const { shortestPath } = require("../graph-shortest-path");
 
 /**
  * Behaviors covered:
@@ -24,12 +24,19 @@ describe("graph-shortest-path shortestPath()", () => {
   });
 
   test("2) -1 when nodes are disconnected (a -> y)", () => {
-    const edges = [["a", "b"], ["b", "c"], ["x", "y"]];
+    const edges = [
+      ["a", "b"],
+      ["b", "c"],
+      ["x", "y"],
+    ];
     expect(shortestPath(edges, "a", "y")).toBe(-1);
   });
 
   test("3) 0 when start equals end and node exists", () => {
-    const edges = [["a", "b"], ["b", "c"]];
+    const edges = [
+      ["a", "b"],
+      ["b", "c"],
+    ];
     expect(shortestPath(edges, "b", "b")).toBe(0);
   });
 
@@ -50,7 +57,10 @@ describe("graph-shortest-path shortestPath()", () => {
   });
 
   test("6) -1 when start node not in graph", () => {
-    const edges = [["a", "b"], ["b", "c"]];
+    const edges = [
+      ["a", "b"],
+      ["b", "c"],
+    ];
     expect(shortestPath(edges, "x", "c")).toBe(-1);
   });
 

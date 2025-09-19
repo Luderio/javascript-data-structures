@@ -4,7 +4,7 @@ const {
   iterativeBFS,
   recursiveBFS,
   graph,
-} = require("../../graph/graph-traversal");
+} = require("../graph-traversal");
 
 // Silence console logs during tests and capture calls
 beforeAll(() => {

@@ -1,7 +1,4 @@
-const {
-  largest_component,
-  traverse,
-} = require("../../graph/graph-largest-component");
+const { largest_component, traverse } = require("../graph-largest-component");
 
 /**
  * Behaviors covered:

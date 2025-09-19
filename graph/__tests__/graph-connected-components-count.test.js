@@ -1,6 +1,4 @@
-const {
-  graph_island_count,
-} = require("../../graph/graph-connected-components-count");
+const { graph_island_count } = require("../graph-connected-components-count");
 
 /**
  * Behaviors covered:

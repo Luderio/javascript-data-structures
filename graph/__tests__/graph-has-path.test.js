@@ -1,4 +1,4 @@
-const { traverse, graph } = require("../../graph/graph-has-path");
+const { traverse, graph } = require("../graph-has-path");
 
 /**
  * Behaviors covered:
