@@ -1,6 +1,6 @@
 # :page_with_curl: javascript-data-structures
 
-_This repository stores the code that I wrote while studying Data Structures in JavaScript. The data structures included in this repositories are the common data structures that is being used during technical interviews. I've written a manual implementation of each data structures to help better understand how each datat structures worked_
+_This repository stores the code that I wrote while studying Data Structures in JavaScript. The data structures included in this repositories are the common data structures that is being used during technical interviews. I've written a manual implementation of each data structures to help better understand how each data structures worked_
 
 ## :memo: List of Contents
 
