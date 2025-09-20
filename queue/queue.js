@@ -38,7 +38,6 @@ function Queue() {
 
   // to check if the queue is empty.
   this.isEmpty = function () {
-    console.log(collection.length === 0);
     return collection.length === 0;
   };
 }
