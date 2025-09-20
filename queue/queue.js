@@ -28,7 +28,6 @@ function Queue() {
 
   // will display the first item on the queue.
   this.front = function () {
-    console.log(`Front Item: ${collection[0]}`);
     return collection[0];
   };
 
