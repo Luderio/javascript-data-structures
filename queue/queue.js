@@ -65,7 +65,7 @@ Sanchez
 New Item
 Luderio,Sanchez,New Item
 Luderio
-Front Item: Sanchez
+Sanchez
 Queue Items: Sanchez,New Item
 false
 */
