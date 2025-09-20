@@ -149,7 +149,7 @@ function CustomSet() {
     }
   };
 
-  // will check if one set is a subset of another. (if every items in one set is found in another).
+  // will check if one set is a subset of another. (if every items in the first set is found in the second set).
   this.isSubSet = function (otherSet) {
     try {
       // check if set is an intance of CustomSet.
@@ -163,6 +163,7 @@ function CustomSet() {
     }
   };
 
+  // will check if one set is a superset of another (if every items in the second set is found in the first set).
   this.isSuperSet = function (otherSet) {
     try {
       // check if set is an intance of CustomSet.
