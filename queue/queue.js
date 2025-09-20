@@ -23,9 +23,7 @@ function Queue() {
 
   // will remove an item from the front of the queue.
   this.dequeue = function () {
-    let removed = collection.shift();
-    console.log(`Dequeued: ${removed}`);
-    return removed;
+    return collection.shift();
   };
 
   // will display the first item on the queue.
