@@ -63,7 +63,7 @@ if (typeof module !== "undefined" && require.main === module) {
 Luderio
 Sanchez
 New Item
-Queue Items: Luderio,Sanchez,New Item
+Luderio,Sanchez,New Item
 Dequeued: Luderio
 Front Item: Sanchez
 Queue Items: Sanchez,New Item
