@@ -30,7 +30,8 @@ function Queue() {
 
   // will display the first item on the queue.
   this.front = function () {
-    return collection[0];
+    if (!this.isEmpty()) return collection[0];
+    return null;
   };
 
   // will display the size
