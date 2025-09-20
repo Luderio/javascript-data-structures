@@ -13,7 +13,6 @@ function Queue() {
 
   // will return the current state of the queue.
   this.print = function () {
-    console.log(`Queue Items: ${collection}`);
     return collection;
   };
 
