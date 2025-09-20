@@ -33,7 +33,6 @@ function Queue() {
 
   // will display the size
   this.size = function () {
-    console.log(`Queue Size: ${collection.length}`);
     return collection.length;
   };
 
