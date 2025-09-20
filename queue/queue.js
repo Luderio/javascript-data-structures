@@ -66,6 +66,6 @@ New Item
 Luderio,Sanchez,New Item
 Luderio
 Sanchez
-Queue Items: Sanchez,New Item
+Sanchez,New Item
 false
 */
