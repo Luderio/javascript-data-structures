@@ -64,7 +64,7 @@ Luderio
 Sanchez
 New Item
 Luderio,Sanchez,New Item
-Dequeued: Luderio
+Luderio
 Front Item: Sanchez
 Queue Items: Sanchez,New Item
 false
