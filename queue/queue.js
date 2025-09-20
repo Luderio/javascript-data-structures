@@ -60,7 +60,7 @@ if (typeof module !== "undefined" && require.main === module) {
 }
 
 /**  OUTPUT:
-Enqueued: Luderio
+Luderio
 Enqueued: Sanchez
 Enqueued: New Item
 Queue Items: Luderio,Sanchez,New Item
