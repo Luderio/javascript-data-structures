@@ -1,7 +1,5 @@
 // Manual Set implementation
 
-const { clear } = require("console");
-
 // Set Characteristics
 // 1. Unique values: A set only stores unique values, meaning duplicates are not allowed.
 // 2. Unordered: The elements in a set are not stored in any particular order.
