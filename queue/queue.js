@@ -19,7 +19,6 @@ function Queue() {
   // will add an item to the end of the queue.
   this.enqueue = function (element) {
     collection.push(element);
-    console.log(`Enqueued: ${element}`);
   };
 
   // will remove an item from the front of the queue.
