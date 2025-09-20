@@ -100,7 +100,7 @@ function CustomSet() {
     }
   };
 
-  // will return elements in the first set but not in the second.
+  // will return elements in the first set that is not in the second.
   this.difference = function (otherSet) {
     try {
       // check if set is an intance of CustomSet.
@@ -121,6 +121,7 @@ function CustomSet() {
     }
   };
 
+  // will return elements in each set that is not found in both set.
   this.symmetricDifference = function (otherSet) {
     try {
       // check if set is an intance of CustomSet.
@@ -148,6 +149,7 @@ function CustomSet() {
     }
   };
 
+  // will check if one set is a subset of another. (if every items in one set is found in another).
   this.isSubSet = function (otherSet) {
     try {
       // check if set is an intance of CustomSet.
