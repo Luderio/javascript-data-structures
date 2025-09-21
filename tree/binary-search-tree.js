@@ -153,6 +153,11 @@ class BinarySearchTree {
     }
 
     function deleteNode(node, value) {
+      /**
+       * findMinimum() function will traverse and find the smallest node at the left of the immediate right child
+       * of the node to be deleted if the node to be deleted has children at left and right side. (CASE 4)
+       *
+       */
       function findMinimum(node) {
         if (node.left !== null) {
           return findMinimum(node.left);
@@ -162,22 +167,22 @@ class BinarySearchTree {
       }
 
       if (value === node.value) {
-        //  if the node does not have any children.
+        //  CASE 1: if the node does not have any children.
         if (node.left === null && node.right === null) {
           return null;
         }
 
-        // if the selected node has no left children
+        // CASE 2: if the selected node has no left children
         if (node.left === null) {
           return node.right;
         }
 
-        // if the selected node has no right children
+        // CASE 3: if the selected node has no right children
         if (node.right === null) {
           return node.left;
         }
 
-        // if the node has children at both sides.
+        // CASE 4: if the node has children at both sides.
         if (node.left !== null && node.right !== null) {
           let successor = findMinimum(node.right);
           node.value = successor.value;
