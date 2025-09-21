@@ -52,6 +52,7 @@ class BinarySearchTree {
     return insertNode(this.root, value);
   }
 
+  // will traverse the nodes and find the minimum value.
   min() {
     if (this.root === null) return null;
 
