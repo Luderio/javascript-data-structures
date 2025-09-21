@@ -52,7 +52,7 @@ class BinarySearchTree {
     return insertNode(this.root, value);
   }
 
-  // will traverse the nodes and find the minimum value.
+  // will traverse the nodes and find the smallest value.
   min() {
     if (this.root === null) return null;
 
@@ -68,6 +68,7 @@ class BinarySearchTree {
     return findMinimum(this.root);
   }
 
+  // will traverse the nodes and finds the largest value.
   max() {
     if (this.root === null) {
       return null;
