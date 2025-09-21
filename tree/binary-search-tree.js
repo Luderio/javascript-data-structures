@@ -85,6 +85,7 @@ class BinarySearchTree {
     return findMaximum(this.root);
   }
 
+  // will check if the tree nodes are balanced.
   isBalanced() {
     return this.minHeight() >= this.maxHeight() - 1;
   }
