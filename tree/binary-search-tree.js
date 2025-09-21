@@ -90,7 +90,8 @@ class BinarySearchTree {
     return this.minHeight() >= this.maxHeight() - 1;
   }
 
-  // will traverse the nodes at the left and right side and will stop at the first leaf node (a parent without 2 children)
+  // will traverse the nodes at the left and right side and will stop at the first leaf node (a parent without 2 children).
+  //  the side with the shortest level of nodes determine the hight of the tree.
   minHeight(node = this.root) {
     if (node === null) return -1;
 
