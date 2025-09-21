@@ -154,7 +154,7 @@ class BinarySearchTree {
 
     function deleteNode(node, value) {
       /**
-       * findMinimum() function will traverse and find the smallest node at the left of the immediate right child
+       * findMinimum() function will traverse and find the smallest node at the left of the IMMEDIATE RIGHT CHILD
        * of the node to be deleted if the node to be deleted has children at left and right side. (CASE 4)
        *
        */
