@@ -55,6 +55,7 @@ function Trie() {
     return searchWord(input, this.root);
   };
 
+  // this method will check if the trie has a word that starts with a given letter or prefix.
   this.startsWith = function (prefix) {
     prefix = prefix.toLowerCase();
     let node = this.root;
