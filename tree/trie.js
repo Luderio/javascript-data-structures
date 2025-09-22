@@ -36,6 +36,7 @@ function Trie() {
     createNodes(input, this.root);
   };
 
+  // will check if the word being searched are present in the trie.
   this.search = function (input) {
     input = input.toLowerCase();
     function searchWord(input, node) {
