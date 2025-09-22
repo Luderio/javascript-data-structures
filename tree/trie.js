@@ -14,6 +14,7 @@ function Trie() {
 
   this.root = new Node();
 
+  // adds a new nodes for each of the characters of the input parameter
   this.insert = function (input) {
     input = input.toLowerCase();
     function createNodes(input, node = this.root) {
