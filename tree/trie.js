@@ -22,6 +22,7 @@ function Trie() {
         node.setEnd(true);
         return;
       }
+
       if (node.keys.has(input[0]) === false) {
         let new_node = new Node();
         node.keys.set(input[0], new_node);
