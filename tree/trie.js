@@ -39,6 +39,8 @@ function Trie() {
   // will check if the word being searched are present in the trie.
   this.search = function (input) {
     input = input.toLowerCase();
+
+    // searchWord() function is a recursive function that will check if the characters of the input word is present in the trie
     function searchWord(input, node) {
       if (input.length === 1 && node.keys.has(input)) {
         return node.keys.get(input).isEnd() ? true : false;
