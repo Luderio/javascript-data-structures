@@ -17,6 +17,8 @@ function Trie() {
   // adds a new nodes for each of the characters of the input parameter
   this.insert = function (input) {
     input = input.toLowerCase();
+
+    // this function is a recursive function that will create nodes for each of the characters of the input.
     function createNodes(input, node = this.root) {
       if (input.length === 0) {
         node.setEnd(true);
