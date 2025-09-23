@@ -78,6 +78,7 @@ function Trie() {
     }
   };
 
+  // will traverse on each character node, concatenates each character to form the words added to the trie and pushes it to an array.
   this.print = function () {
     let words = new Array();
     let traverse = function (node, string) {
