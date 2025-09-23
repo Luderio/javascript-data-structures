@@ -60,6 +60,7 @@ function HashTable() {
     return item === undefined ? false : true;
   };
 
+  // deletes the selected key from the HashTable.
   this.delete = function (key) {
     let item = this.has(key);
 
@@ -81,6 +82,7 @@ function HashTable() {
     }
   };
 
+  // returns the keys of the items in HashTable in an array format.
   this.keys = function () {
     let keys = [];
 
