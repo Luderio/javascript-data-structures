@@ -112,6 +112,7 @@ function Trie() {
 
     // traverse() function is a recursive function.
     function traverse(word, node) {
+      // base case
       if (word.length === 0) {
         if (node.isEnd()) {
           tracker.push({
