@@ -12,6 +12,7 @@ class CustomMap {
     this.count++;
   }
 
+  // will check if the key is existing in the map. returns the value if existing. null if not.
   get(key) {
     return key in this.collection ? this.collection[key] : null;
   }
