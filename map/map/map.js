@@ -39,6 +39,7 @@ class CustomMap {
     return null;
   }
 
+  // returns the total nu,ber of items in the map.
   size() {
     return this.count;
   }
