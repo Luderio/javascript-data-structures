@@ -49,6 +49,7 @@ class CustomMap {
     return Object.keys(this.collection);
   }
 
+  // returns the values of each keys in array format
   values() {
     let values = new Array();
     for (let key of Object.keys(this.collection)) {
@@ -57,6 +58,7 @@ class CustomMap {
     return values;
   }
 
+  // will return the items inside the map in [key, value] format.
   entries() {
     if (this.count === 0) return null;
 
