@@ -54,6 +54,7 @@ function HashTable() {
     }
   };
 
+  // checks for the existance of a key in the HashTable.
   this.has = function (key) {
     let item = this.get(key);
     return item === undefined ? false : true;
