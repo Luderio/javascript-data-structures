@@ -104,6 +104,7 @@ function HashTable() {
     return keys;
   };
 
+  // returns the values of the items in HashTable in an array format.
   this.values = function () {
     let values = [];
 
