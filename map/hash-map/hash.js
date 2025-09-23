@@ -126,6 +126,7 @@ function HashTable() {
     return values;
   };
 
+  // returns all the key, value pairs in a [key, value] format.
   this.entries = function () {
     let entries = [];
 
@@ -147,6 +148,7 @@ function HashTable() {
     return entries;
   };
 
+  // deletes all key,value pairs in the HashTable.
   this.clear = function () {
     table = new Array(this.size);
     this.size = 0;
