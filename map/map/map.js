@@ -17,6 +17,7 @@ class CustomMap {
     return key in this.collection ? this.collection[key] : null;
   }
 
+  // will check for the existance of the key in the map. returns true of existing, false of not.
   has(key) {
     return key in this.collection;
   }
