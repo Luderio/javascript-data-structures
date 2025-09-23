@@ -13,6 +13,7 @@ function HashTable() {
     return hash % this.storage_size;
   };
 
+  // this method will add new items in the HashTable or update the value of existing keys.
   this.set = function (key, value) {
     let index = this._hash(key);
 
