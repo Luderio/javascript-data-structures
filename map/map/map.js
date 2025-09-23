@@ -30,6 +30,7 @@ class CustomMap {
     }
   }
 
+  // will remove all the (key, value) pairs assigned to collection and set the count to 0.
   clear() {
     if (this.count !== 0) {
       this.collection = {};
