@@ -22,6 +22,7 @@ class CustomMap {
     return key in this.collection;
   }
 
+  // will check if the key is existing in the map. If yes, it deletes the (key, value) pair and decrement the count.
   delete(key) {
     if (this.has(key)) {
       delete this.collection[key];
