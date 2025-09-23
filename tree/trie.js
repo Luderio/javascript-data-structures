@@ -110,70 +110,70 @@ function Trie() {
     if (selected_word === false || selected_word === undefined) return false;
     if (word.length <= 0) return false;
 
-    if (this.root.keys.has(word[0])) {
-      function traverse(word, node) {
-        if (word.length === 0) {
-          if (node.isEnd()) {
-            tracker.push({
-              previous_letter: previous_letter,
-              current_letter: word[0],
-              node: node,
-            });
-            if (node.keys.size > 0) {
-              node.setEnd(false);
-              return true;
-            } else if (node.keys.size === 0 && intersection.length === 0) {
-              return root_node.keys.delete(word_copy[0]);
-            } else if (
-              tracker.length > 1 &&
-              tracker[0].node.keys.get(tracker[0].current_letter).keys.size ===
-                1
-            ) {
-              return tracker[0].node.keys.delete(tracker[0].current_letter);
-            } else {
-              return intersection[intersection.length - 1].node.keys.delete(
-                intersection[intersection.length - 1].current_letter
-              );
-            }
-          }
-          return true;
-        }
-
-        if (node.keys.size > 1) {
-          intersection.push({
+    // traverse() function is a recursive function.
+    function traverse(word, node) {
+      if (word.length === 0) {
+        if (node.isEnd()) {
+          tracker.push({
             previous_letter: previous_letter,
             current_letter: word[0],
             node: node,
           });
-
-          if (node.isEnd()) {
-            tracker.push({
-              previous_letter: previous_letter,
-              current_letter: word[0],
-              node: node,
-            });
+          if (node.keys.size > 0) {
+            node.setEnd(false);
+            return true;
+          } else if (node.keys.size === 0 && intersection.length === 0) {
+            return root_node.keys.delete(word_copy[0]);
+          } else if (
+            tracker.length > 1 &&
+            tracker[0].node.keys.get(tracker[0].current_letter).keys.size === 1
+          ) {
+            return tracker[0].node.keys.delete(tracker[0].current_letter);
+          } else {
+            return intersection[intersection.length - 1].node.keys.delete(
+              intersection[intersection.length - 1].current_letter
+            );
           }
-
-          previous_letter = word[0];
-
-          return traverse(word.substring(1), node.keys.get(word[0]));
         }
-
-        if (node.keys.size === 1) {
-          if (node.isEnd()) {
-            tracker.push({
-              previous_letter: previous_letter,
-              current_letter: word[0],
-              node: node,
-            });
-          }
-
-          previous_letter = word[0];
-
-          return traverse(word.substring(1), node.keys.get(word[0]));
-        }
+        return true;
       }
 
+      if (node.keys.size > 1) {
+        intersection.push({
+          previous_letter: previous_letter,
+          current_letter: word[0],
+          node: node,
+        });
+
+        if (node.isEnd()) {
+          tracker.push({
+            previous_letter: previous_letter,
+            current_letter: word[0],
+            node: node,
+          });
+        }
+
+        previous_letter = word[0];
+
+        return traverse(word.substring(1), node.keys.get(word[0]));
+      }
+
+      if (node.keys.size === 1) {
+        if (node.isEnd()) {
+          tracker.push({
+            previous_letter: previous_letter,
+            current_letter: word[0],
+            node: node,
+          });
+        }
+
+        previous_letter = word[0];
+
+        return traverse(word.substring(1), node.keys.get(word[0]));
+      }
+    }
+
+    if (this.root.keys.has(word[0])) {
       return traverse(word, this.root);
     }
   };
