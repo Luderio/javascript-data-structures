@@ -44,6 +44,7 @@ class CustomMap {
     return this.count;
   }
 
+  // returns the keys of the map elements in an array format.
   keys() {
     return Object.keys(this.collection);
   }
