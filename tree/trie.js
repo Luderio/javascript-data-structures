@@ -98,6 +98,7 @@ function Trie() {
     return words.length > 0 ? words : undefined;
   };
 
+  // deletes the selected word in the trie.
   this.delete = function (word) {
     word = word.toLowerCase();
     let selected_word = this.search(word);
