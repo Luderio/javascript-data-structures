@@ -36,6 +36,7 @@ function HashTable() {
     }
   };
 
+  // will return the value of the input key if found. returns undefined if not found.
   this.get = function (key) {
     let index = this._hash(key);
 
