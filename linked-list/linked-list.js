@@ -21,6 +21,7 @@ function LinkedList() {
     return head;
   };
 
+  // checks if the linked list has value
   this.isEmpty = function () {
     return head === null;
   };
