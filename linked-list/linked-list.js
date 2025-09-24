@@ -68,6 +68,7 @@ function LinkedList() {
     }
   };
 
+  // deletes an element in the linked list
   this.delete = function (element) {
     if (head === null) {
       console.info("The linked list has no existing nodes yet.");
