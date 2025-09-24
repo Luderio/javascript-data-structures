@@ -96,6 +96,7 @@ function LinkedList() {
     }
   };
 
+  // will return the index of the emelent in the linked-list.
   this.indexOf = function (element) {
     if (head === null) {
       return -1;
