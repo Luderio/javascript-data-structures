@@ -12,6 +12,7 @@ function LinkedList() {
     this.next = null;
   }
 
+  // returns the current head node.
   this.head = function () {
     if (head === null) {
       console.info("The linked list has no existing nodes yet.");
