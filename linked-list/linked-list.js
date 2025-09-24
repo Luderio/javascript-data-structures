@@ -26,6 +26,7 @@ function LinkedList() {
     return head === null;
   };
 
+  // adds a new data to the end of the linked list
   this.insert = function (element) {
     let node = new Node(element);
 
