@@ -45,6 +45,7 @@ function LinkedList() {
     }
   };
 
+  // searches for an element in he linked list.
   this.search = function (element) {
     if (head === null) {
       console.info("The linked list has no existing nodes yet.");
