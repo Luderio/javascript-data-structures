@@ -120,6 +120,7 @@ function LinkedList() {
     }
   };
 
+  // will return a value at the given index.
   this.elementAt = function (index) {
     if (head === null) {
       console.info("The linked list has no existing nodes yet.");
