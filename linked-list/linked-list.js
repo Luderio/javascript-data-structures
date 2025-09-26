@@ -149,6 +149,7 @@ function LinkedList() {
     }
   };
 
+  // inserts a new element at a specific index.
   this.insertAt = function (index, element) {
     let new_node = new Node(element);
 
