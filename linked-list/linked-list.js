@@ -187,6 +187,7 @@ function LinkedList() {
     }
   };
 
+  // deletes an element in the given index.
   this.deleteAt = function (index) {
     if (head === null) {
       console.info("The linked list has no existing nodes yet.");
