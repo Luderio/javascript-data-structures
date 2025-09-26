@@ -216,6 +216,7 @@ function LinkedList() {
     }
   };
 
+  // explores the nodes of every items in the linked-list
   this.traverse = function (callback) {
     if (head === null) {
       return;
