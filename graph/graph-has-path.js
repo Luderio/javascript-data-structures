@@ -1,3 +1,4 @@
+// will traverse/explore the nodess of the tree from starting node to the destination node.
 const traverse = (graph, source_node, destination_node) => {
   if (source_node === destination_node) return true;
   if (source_node === undefined || source_node === null) return false;
