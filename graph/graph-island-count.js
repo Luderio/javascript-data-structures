@@ -20,6 +20,7 @@ const islandCount = (grid) => {
   return island;
 };
 
+// this is a recursive function.
 const sail = (grid, row, column, visited) => {
   const validRowCoordinate = 0 <= row && row < grid.length;
   const validColumnCoordinate = 0 <= column && column < grid[0].length;
