@@ -199,12 +199,17 @@ function LinkedList() {
     } else {
       let current_node = head;
       let previous_node;
-      while (current_node.element !== element) {
+      while (current_node.element !== element && current_node.next !== null) {
         previous_node = current_node;
         current_node = current_node.next;
       }
-      previous_node.next = current_node.next;
-      this.length--;
+      if (current_node.next === null && current_node.element !== element) {
+        console.info("Element is not existing in the list");
+        return null;
+      } else {
+        previous_node.next = current_node.next;
+        this.length--;
+      }
     }
   };
 
