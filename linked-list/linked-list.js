@@ -193,15 +193,18 @@ function LinkedList() {
       console.info("The linked list has no existing nodes yet.");
       return null;
     }
-    let current_node = head;
-    while (current_node.next) {
-      if (current_node.next.element === element) {
-        current_node.next = current_node.next.next;
-        this.length--;
-        return;
-      } else {
+    if (head.element === element) {
+      head = head.next;
+      this.length--;
+    } else {
+      let current_node = head;
+      let previous_node;
+      while (current_node.element !== element) {
+        previous_node = current_node;
         current_node = current_node.next;
       }
+      previous_node.next = current_node.next;
+      this.length--;
     }
   };
 
@@ -248,6 +251,8 @@ function LinkedList() {
     }
   };
 }
+
+export default LinkedList;
 
 if (typeof module !== "undefined") {
   module.exports = LinkedList;
